@@ -1,21 +1,34 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
+interface Route {
+  name: string;
+  path: string;
+}
+
+const routes: Route[] = [
+  { name: "Home", path: "/" },
+  { name: "Maps", path: "/maps" },
+  { name: "Destination", path: "/destination" },
+  { name: "Review", path: "/review" },
+];
 
 export default function Navbar() {
   return (
     <nav>
       <ul style={{ display: "flex", gap: "1rem" }}>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/maps">Maps</Link>
-        </li>
-        <li>
-          <Link to="/destination">Destination</Link>
-        </li>
-        <li>
-          <Link to="/review">Review</Link>
-        </li>
+        {routes.map((route) => (
+          <li key={route.path}>
+            <NavLink
+              to={route.path}
+              style={({ isActive }) => ({
+                textDecoration: isActive ? "underline" : "none",
+                color: isActive ? "blue" : "black",
+              })}
+            >
+              {route.name}
+            </NavLink>
+          </li>
+        ))}
       </ul>
     </nav>
   );
