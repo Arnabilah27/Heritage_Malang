@@ -1,5 +1,4 @@
 import { Link, useLocation } from "react-router-dom";
-import { cn } from "@/lib/utils";
 import { useState } from "react";
 
 interface Route {
@@ -19,26 +18,30 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-        <h1 className="text-xl font-bold text-blue-600">MyCompany</h1>
+    <nav className="bg-navbar shadow-sm sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between sm:justify-start">
+        <img src="/logo.png" alt="logo" className="w-13 h-13" />
 
         {/* Desktop Menu */}
-        <ul className="hidden sm:flex gap-6">
-          {navItems.map(({ name, path }) => (
-            <li key={path}>
+        <div className="hidden md:block">
+          <div className="ml-10 flex items-center space-x-8">
+            {navItems.map(({ name, path }) => (
               <Link
+                key={path}
                 to={path}
-                className={cn(
-                  "text-sm font-medium hover:text-blue-600 transition",
-                  location.pathname === path ? "text-blue-600" : "text-gray-600"
-                )}
+                className={`relative navbar-text hover:transition-colors duration-200
+                    ${
+                      location.pathname === path
+                        ? 'after:content-[""] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[#513520]'
+                        : ""
+                    }
+                    hover:after:content-[''] hover:after:absolute hover:after:left-0 hover:after:bottom-[-4px] hover:after:w-full hover:after:h-[2px] hover:after:bg-[#513520]`}
               >
                 {name}
               </Link>
-            </li>
-          ))}
-        </ul>
+            ))}
+          </div>
+        </div>
 
         {/* Hamburger Button (Mobile Only) */}
         <button
@@ -72,15 +75,18 @@ export default function Navbar() {
 
       {/* Mobile Dropdown Menu */}
       {menuOpen && (
-        <ul className="sm:hidden px-4 pb-4 space-y-2 bg-white shadow">
+        <ul className="sm:hidden px-6 py-2 space-y-2 bg-white shadow">
           {navItems.map(({ name, path }) => (
             <li key={path}>
               <Link
                 to={path}
-                className={cn(
-                  "block text-sm font-medium hover:text-blue-600 transition",
-                  location.pathname === path ? "text-blue-600" : "text-gray-700"
-                )}
+                className={`relative text-navbar-link hover:text-navbar-link transition-colors duration-200
+                  ${
+                    location.pathname === path
+                      ? 'after:content-[""] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[#513520]'
+                      : ""
+                  }
+                  hover:after:content-[''] hover:after:absolute hover:after:left-0 hover:after:bottom-[-4px] hover:after:w-full hover:after:h-[2px] hover:after:bg-[#513520]`}
                 onClick={() => setMenuOpen(false)}
               >
                 {name}
