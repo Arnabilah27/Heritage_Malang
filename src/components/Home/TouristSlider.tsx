@@ -59,22 +59,28 @@ export default function TouristSlider() {
         {data.map((item, i) => (
           <SwiperSlide key={i}>
             <div
-              className={`rounded overflow-hidden shadow-sm border hover:border-blue-500 transition duration-300 bg-white
-              ${i % 2 === 1 ? "mt-0 md:mt-0" : "mt-0 md:mt-6"}`}
+              className={`relative rounded-lg overflow-hidden py-10  
+              ${i % 2 === 1 ? "md:mt-3" : "md:-mt-3"}`}
             >
+              {/* Image */}
               <img
                 src={item.image}
                 alt={item.title}
-                className="h-84 w-full object-cover"
+                className="w-full h-96 object-cover rounded-lg"
               />
-              <div className="p-4 text-left ">
-                <p className="text-[12px] italic text-[#C9AB81] mb-1">
-                  {item.date}
-                </p>
-                <h3 className="font-serif font-semibold text-md uppercase leading-tight">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-gray-700 mt-1 underline cursor-pointer">
+
+              {/* Overlapping bottom content */}
+              <div className="absolute bottom-15 left-0 right-0 translate-y-1/2 pr-10">
+                <div className="bg-white rounded-lg px-2 py-4 shadow-md text-left mb-3">
+                  <p className="text-[12px] italic font-semibold text-[#C9AB81] mb-1">
+                    {item.date}
+                  </p>
+                  <h3 className="font-semibold text-[#525252] text-md uppercase leading-tight tracking-wide">
+                    {item.title}
+                  </h3>
+                </div>
+                <p className="text-sm text-gray-700 cursor-pointer">
+                  <span className="font-sans text-[#C9AB81]">——&nbsp;</span>{" "}
                   View more
                 </p>
               </div>
@@ -86,14 +92,12 @@ export default function TouristSlider() {
       {/* Bullet customization */}
       <style>{`
         .swiper-wrapper {
-          margin-bottom: 80px;
+          margin-bottom: 60px;
         }
         .swiper-pagination-bullet {
-          background-color: #333;
           opacity: 0.5;
         }
         .swiper-pagination-bullet-active {
-          background-color: #000;
           opacity: 1;
         }
       `}</style>

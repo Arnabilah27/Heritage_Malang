@@ -9,7 +9,7 @@ export default function Home() {
       <div className="w-full bg-[#edece9] text-[#847C65]">
         <div className="flex flex-col items-center justify-center gap-2 py-10">
           <h1 className="text-xl italic">STADSKAART</h1>
-          <h1 className="text-4xl italic text-center font-semibold">
+          <h1 className="text-2xl lg:text-4xl italic text-center font-semibold">
             <span className="hidden md:inline">—&nbsp;&nbsp;&nbsp;&nbsp;</span>
             HISTORY OF MALANG CITY
             <span className="hidden md:inline">&nbsp;&nbsp;&nbsp;&nbsp;—</span>
@@ -50,12 +50,12 @@ export default function Home() {
       {/* Tourist Attraction */}
       <div className="w-full bg-[#D5D4D1] text-[#847C65]">
         <div className="flex flex-col items-center justify-center gap-2 py-10">
-          <h1 className="text-4xl italic text-center font-semibold">
+          <h1 className="text-2xl lg:text-4xl italic text-center font-semibold">
             <span className="hidden md:inline">—&nbsp;&nbsp;&nbsp;&nbsp;</span>
             TOURIST ATTRACTION
             <span className="hidden md:inline">&nbsp;&nbsp;&nbsp;&nbsp;—</span>
           </h1>
-          <div className="w-full flex flex-row gap-2 pt-10">
+          <div className="w-full flex flex-row gap-2 lg:pt-12">
             <TouristSlider />
           </div>
         </div>
