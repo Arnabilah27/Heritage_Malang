@@ -32,7 +32,7 @@ export default function Hero() {
           el: ".swiper-pagination",
         }}
         autoplay={{
-          delay: 600000,
+          delay: 5000,
           disableOnInteraction: false,
         }}
         loop={true}
