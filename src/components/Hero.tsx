@@ -6,17 +6,17 @@ import "swiper/swiper-bundle.css";
 const slides = [
   {
     image: "./hero-background.webp",
-    title: "HERITAGE MALANG CITY",
+    title: "— HERITAGE MALANG CITY —",
     subtitle: "STADSKAART",
   },
   {
     image: "./hero-background.webp",
-    title: "EXPLORE MALANG HISTORY",
+    title: "— EXPLORE MALANG HISTORY —",
     subtitle: "STADSKAART",
   },
   {
     image: "./hero-background.webp",
-    title: "DISCOVER CULTURE",
+    title: "— DISCOVER CULTURE —",
     subtitle: "STADSKAART",
   },
 ];
@@ -49,7 +49,7 @@ export default function Hero() {
                 className="absolute inset-0 w-full h-full object-cover brightness-75"
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4 z-10">
-                <h4 className="text-sm tracking-widest mb-2 uppercase">
+                <h4 className="text-xl italic tracking-widest mb-2 uppercase">
                   {slide.subtitle}
                 </h4>
                 <h1 className="text-4xl md:text-5xl font-bold leading-tight text-balance">
