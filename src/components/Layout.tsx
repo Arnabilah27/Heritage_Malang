@@ -1,15 +1,15 @@
-import { Outlet } from 'react-router-dom'
-import Navbar from './Navbar'
-import Footer from './Footer'
+import { Outlet } from "react-router-dom";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 export default function Layout() {
   return (
     <div>
       <Navbar />
-      <main style={{ padding: '1rem' }}>
+      <main>
         <Outlet />
       </main>
       <Footer />
     </div>
-  )
+  );
 }
