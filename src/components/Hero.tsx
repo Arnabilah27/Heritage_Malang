@@ -6,17 +6,17 @@ import "swiper/swiper-bundle.css";
 const slides = [
   {
     image: "./hero-background.webp",
-    title: "— HERITAGE MALANG CITY —",
+    title: "HERITAGE MALANG CITY",
     subtitle: "STADSKAART",
   },
   {
     image: "./hero-background.webp",
-    title: "— EXPLORE MALANG HISTORY —",
+    title: "EXPLORE MALANG HISTORY",
     subtitle: "STADSKAART",
   },
   {
     image: "./hero-background.webp",
-    title: "— DISCOVER CULTURE —",
+    title: "DISCOVER CULTURE",
     subtitle: "STADSKAART",
   },
 ];
@@ -32,7 +32,7 @@ export default function Hero() {
           el: ".swiper-pagination",
         }}
         autoplay={{
-          delay: 5000,
+          delay: 600000,
           disableOnInteraction: false,
         }}
         loop={true}
@@ -46,14 +46,16 @@ export default function Hero() {
               <img
                 src={slide.image}
                 alt={slide.title}
-                className="absolute inset-0 w-full h-full object-cover brightness-75"
+                className="absolute inset-0 w-full h-full object-fill brightness-75"
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4 z-10">
                 <h4 className="text-xl italic tracking-widest mb-2 uppercase">
                   {slide.subtitle}
                 </h4>
                 <h1 className="text-4xl md:text-5xl font-bold leading-tight text-balance">
+                  <span className="hidden md:inline">—&nbsp;&nbsp;</span>
                   {slide.title}
+                  <span className="hidden md:inline">&nbsp;&nbsp;—</span>
                 </h1>
                 <button className="mt-6 px-6 py-2 border-2 font-semibold border-[#C9AB81] text-[#C9AB81] cursor-pointer hover:bg-white hover:text-black transition duration-300">
                   Explore city
