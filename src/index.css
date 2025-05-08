@@ -85,6 +85,7 @@
   }
 }
 
+/* Custom CSS */
 @layer utilities {
   .bg-navbar {
     background-color: #edece9;
@@ -94,5 +95,8 @@
   }
   .navbar-text:hover {
     color: #513520;
+  }
+  .bg-footer {
+    background-color: #9a8f69;
   }
 }
