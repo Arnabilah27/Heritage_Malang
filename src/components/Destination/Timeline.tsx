@@ -125,6 +125,12 @@ export default function Timeline() {
           </div>
         ))}
       </div>
+
+      <div className="flex flex-col items-center justify-center mt-20">
+        <button className="border border-[#9A8F69] text-[#9A8F69] px-4 py-2 rounded-sm hover:bg-[#9A8F69] hover:text-white transition duration-200 cursor-pointer">
+          View More
+        </button>
+      </div>
     </div>
   );
 }
