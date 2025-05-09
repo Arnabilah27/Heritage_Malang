@@ -69,7 +69,7 @@ export default function Timeline() {
   return (
     <div className="max-w-7xl mx-auto py-10 sm:py-20 px-4 relative">
       {/* Vertical Line - hidden on mobile */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 h-[2400px] w-[1px] bg-black z-0 hidden md:block"></div>
+      <div className="absolute left-1/2 transform -translate-x-1/2 lg:h-[2400px] md:h-[2900px] w-[1px] bg-black z-0 hidden md:block"></div>
 
       <div className="flex flex-col gap-16 sm:gap-32">
         {destinations.map((item, i) => (
@@ -80,7 +80,7 @@ export default function Timeline() {
             }`}
           >
             {/* Image */}
-            <div className="w-full md:w-[400px] h-auto">
+            <div className="w-full md:w-[300px] lg:w-[400px] h-auto">
               <img
                 src={item.image}
                 alt={item.title}
@@ -90,7 +90,7 @@ export default function Timeline() {
 
             {/* Text content */}
             <div
-              className={`w-full md:w-[500px] text-gray-700 mt-4 md:mt-0 ${
+              className={`w-full md:w-[300px] lg:w-[500px] text-gray-700 mt-4 md:mt-0 ${
                 i % 2 === 0
                   ? "md:pl-10 lg:pl-20 md:text-left"
                   : "md:pr-10 lg:pr-20 md:text-right"
