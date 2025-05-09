@@ -65,64 +65,6 @@ nulla duis aute.`,
   },
 ];
 
-// export default function Timeline() {
-//   return (
-//     <div className="max-w-7xl mx-auto py-20 px-4 relative">
-//       {/* Vertical Line */}
-//       <div className="absolute left-1/2 transform -translate-x-1/2 h-[2400px] w-[1px] bg-gray-300 z-0"></div>
-
-//       <div className="flex flex-col gap-32">
-//         {destinations.map((item, i) => (
-//           <div
-//             key={item.id}
-//             className={`flex flex-col md:flex-row items-center justify-center md:items-start gap-10 relative z-10 ${
-//               i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-//             }`}
-//           >
-//             {/* Image */}
-//             <div className="w-[400px] h-auto">
-//               <img
-//                 src={item.image}
-//                 alt={item.title}
-//                 className="rounded-lg border shadow-md w-full h-[500px] object-cover"
-//               />
-//             </div>
-
-//             {/* Text content */}
-//             <div
-//               className={`md:w-1/2 text-gray-700 ${
-//                 i % 2 === 0 ? "md:pl-30" : "md:pr-20"
-//               }`}
-//             >
-//               <p className="italic text-[#C9AB81] text-sm mb-2">
-//                 {item.subtitle}
-//               </p>
-//               <h3 className="text-2xl font-serif font-semibold uppercase tracking-wide mb-4">
-//                 {item.title}
-//               </h3>
-//               <p className="mb-6">{item.description}</p>
-//               <div className="mb-2">
-//                 <strong className="block font-medium mb-1">
-//                   🎫 Admissions
-//                 </strong>
-//                 <p className="whitespace-pre-line">{item.admissions}</p>
-//               </div>
-//               <div>
-//                 <strong className="block font-medium mb-1">
-//                   🕒 Opening Hours
-//                 </strong>
-//                 <p className="whitespace-pre-line">{item.hours}</p>
-//               </div>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
-// ... existing code ...
-
 export default function Timeline() {
   return (
     <div className="max-w-7xl mx-auto py-10 sm:py-20 px-4 relative">
@@ -154,10 +96,10 @@ export default function Timeline() {
                   : "md:pr-10 lg:pr-20 md:text-right"
               }`}
             >
-              <p className="italic text-[#C9AB81] text-sm mb-2">
+              <p className="italic text-[#C9AB81] text-md mb-2">
                 {item.subtitle}
               </p>
-              <h3 className="text-xl sm:text-2xl font-serif font-semibold uppercase tracking-wide mb-3 sm:mb-4">
+              <h3 className="text-xl sm:text-3xl font-serif font-semibold uppercase tracking-wide mb-3 sm:mb-4">
                 {item.title}
               </h3>
               <p className="mb-4 sm:mb-6 text-sm sm:text-base text-justify">
