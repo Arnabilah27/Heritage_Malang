@@ -100,28 +100,6 @@
   }
 
   /* Swiper CSS */
-  .swiper-pagination {
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    width: 100%;
-    z-index: 20;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 20px;
-  }
-  .swiper-pagination-bullet {
-    width: 10px;
-    height: 10px;
-    background: white !important;
-    opacity: 0.6;
-    border-radius: 50%;
-  }
-  .swiper-pagination-bullet-active {
-    background: #ffffff;
-    opacity: 1;
-  }
   .swiper-button-next,
   .swiper-button-prev {
     color: #ffffff !important;
