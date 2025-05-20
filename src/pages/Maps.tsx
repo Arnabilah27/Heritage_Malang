@@ -1,19 +1,59 @@
+import { useState } from "react";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
 import DestinationSlider from "@/components/Maps/DestinationSlider";
+import mapData from "@/maps.json";
+
+// Fix for default marker icons in React Leaflet
+import L from "leaflet";
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
+
+const DefaultIcon = L.icon({
+  iconUrl: icon,
+  shadowUrl: iconShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
 
 export default function Maps() {
+  const [selectedLocation, setSelectedLocation] = useState<typeof mapData[0] | null>(null);
+
   return (
     <div className="w-full flex flex-col md:flex-row">
       <section className="w-full md:w-2/3 h-[300px] md:h-screen order-1">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126438.33876397018!2d112.54938048525975!3d-7.978467194606789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd62822063dc2fb%3A0x78879446481a4da2!2sMalang%2C%20Malang%20City%2C%20East%20Java!5e0!3m2!1sen!2sid!4v1746750755154!5m2!1sen!2sid"
-          className="w-full h-full border-0"
-          allowFullScreen={true}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        />
+        <MapContainer
+          center={[-7.977131826999937, 112.63418492300002]}
+          zoom={13}
+          className="w-full h-full"
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {mapData.map((location) => (
+            <Marker
+              key={location.name}
+              position={[location.lat, location.long]}
+              eventHandlers={{
+                click: () => {
+                  setSelectedLocation(location);
+                },
+              }}
+            >
+              <Popup>
+                <div>
+                  <h3 className="font-semibold">{location.name}</h3>
+                </div>
+              </Popup>
+            </Marker>
+          ))}
+        </MapContainer>
       </section>
       <section className="w-full md:w-1/3 order-2">
-        <DestinationSlider />
+        <DestinationSlider selectedLocation={selectedLocation} />
       </section>
     </div>
   );
