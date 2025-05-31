@@ -36,7 +36,7 @@ export default function TouristSlider() {
               <div className="absolute bottom-15 left-0 right-0 translate-y-1/2 pr-10">
                 <div className="bg-white rounded-lg px-2 py-4 shadow-md text-left mb-3">
                   <p className="text-[12px] italic font-semibold text-[#C9AB81] mb-1">
-                    {item.date}
+                    {item.address}
                   </p>
                   <h3 className="font-semibold text-[#525252] text-md uppercase leading-tight tracking-wide">
                     {item.name}

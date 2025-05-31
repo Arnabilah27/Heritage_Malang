@@ -47,7 +47,7 @@ export default function DestinationSlider({
               <img
                 src={item.image}
                 alt={item.name}
-                className="rounded-lg w-full h-[250px] sm:h-[350px] md:h-[400px] object-cover"
+                className="rounded-lg w-full h-[200px] sm:h-[300px] md:h-[350px] object-cover"
               />
 
               <div className="h-8"></div>

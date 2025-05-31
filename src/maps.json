@@ -1,11 +1,12 @@
 [
   {
-    "name": "Balai Kota",
+    "name": "Balai Kota Malang",
     "lat": -7.978011068999933,
     "long": 112.63389592300007,
     "image": "./hero-background.webp",
     "date": "Open Daily",
-    "description": "The City Hall of Malang, a historic building that represents the city's administrative center."
+    "address": "Lorem, Ipsum",
+    "description": "Balai Kota adalah gedung resmi tempat administrasi pemerintahan kota berlangsung. Balai Kota Malang dibangun pada tahun 1927 dan selesai pada 1929. Awalnya dikenal sebagai Gemeentehuis, yaitu pusat pemerintahan kolonial Belanda setelah Malang menjadi kotapraja (Gemeente) pada 1 April 1914. Arsitek H.F. Horn dari Semarang mendesain gedung ini dengan gaya arsitektur kolonial tropis, dilengkapi taman dan kolam bundar di depannya yang kini menjadi Tugu Merdeka. Setelah kemerdekaan Indonesia, bangunan ini diambil alih oleh pemerintah RI dan berfungsi hingga sekarang sebagai pusat administrasi Kota Malang."
   },
   {
     "name": "Gereja Cor Jesu",
@@ -13,7 +14,8 @@
     "long": 112.63192867900011,
     "image": "./hero-background.webp",
     "date": "Open Daily",
-    "description": "A beautiful Catholic church with stunning architecture and rich history."
+    "address": "Lorem, Ipsum",
+    "description": "Cor Jesu berasal dari bahasa latin yang memiliki arti Hati Kudus Yesus. Gereja ini didirikan oleh komunitas biarawati Ursulin pada awal abad ke-20 sebagai bagian dari kompleks pendidikan dan biara di Malang. Bangunan gereja ini dirancang oleh biro arsitek Belanda Cuypers-Hulswit-Fermont dan selesai dibangun pada tahun 1952 dengan gaya arsitektur neo-gotik."
   },
   {
     "name": "Gereja Immanuel Malang",
@@ -21,7 +23,8 @@
     "long": 112.63014554300003,
     "image": "./hero-background.webp",
     "date": "Open Daily",
-    "description": "A historic Protestant church in the heart of Malang."
+    "address": "Lorem, Ipsum",
+    "description": "Immanuel berasal dari bahasa Ibrani yang berart Allah beserta kita. Gereja ini didirikan pada tahun 1861 dengan nama Protestantse Gemeente te Malang. Gereja ini awalnya digunakan sebagai tempat ibadah bagi orang-orang Belanda dan Eropa lainnya yang beragama Kristen Protestan.  Arsitektur gereja ini bergaya Gotik, mencerminkan ciri khas gereja pada pertengahan abad ke-19. Pada tahun 1912, gereja ini pernah dibongkar dan dibangun kembali dengan bentuk yang sama seperti yang tampak sekarang. Gereja ini juga menyimpan dua Alkitab kuno yang dicetak pada tahun 1618 dan 1715 Masehi, yang merupakan peninggalan dari zaman penjajahan Belanda."
   },
   {
     "name": "Gereja Paroki Hati Kudus Yesus",
@@ -29,7 +32,8 @@
     "long": 112.63077145600005,
     "image": "./hero-background.webp",
     "date": "Open Daily",
-    "description": "A Catholic church known for its beautiful architecture and peaceful atmosphere."
+    "address": "Lorem, Ipsum",
+    "description": "Paroki Hati Kudus Yesus memiliki arti wilayah pelayanan gereja Katolik yang menekankan kasih dan belas kasih Yesus Kristus.  Gereja ini awalnya merupakan bagian dari Paroki Kepanjen Surabaya dan mulai berdiri sendiri pada 4 Juni 1897. Pembangunan gereja dimulai dengan peletakan batu pertama oleh Pater G.D.A. Jonckbloet, S.J. pada 11 Mei 1905 dan selesai dalam waktu tujuh bulan. Gereja ini dirancang oleh arsitek Belanda, Ir. Marius J. Hulswit, dengan gaya arsitektur Neo-Gotik. Nama Hati Kudus Yesus dipilih untuk mengungkapkan dedikasi umat Katolik terhadap devosi yang sangat populer pada masa itu."
   },
   {
     "name": "Idjen Boulevard",
@@ -37,15 +41,17 @@
     "long": 112.62179437300006,
     "image": "./hero-background.webp",
     "date": "Open Daily",
-    "description": "A famous street in Malang known for its colonial architecture and vibrant atmosphere."
+    "address": "Lorem, Ipsum",
+    "description": "Idjen merujuk pada nama Gunung Ijen, mengikuti pola penamaan kawasan dengan nama-nama gunung di Jawa. Boulevard berasal dari Bahasa Belanda, berarti jalan lebar yang biasanya memiliki taman di tengahnya.  Idjen Boulevard dibangun pada masa Hindia Belanda sebagai bagian dari rencana pengembangan kota yang dikenal dengan nama Bouwplan. Pembangunan kawasan ini dimulai pada tahun 1935 dan berlangsung hingga 1960, dirancang oleh arsitek Belanda terkenal, Ir. Herman Thomas Karsten. Kawasan ini dirancang sebagai pemukiman elit bagi pejabat dan pengusaha Belanda, dengan konsep boulevard yang memiliki taman di tengah jalan dan pohon palem di sepanjang sisi jalan."
   },
   {
-    "name": "Kayu Tangan",
+    "name": "Kayutangan Heritage",
     "lat": -7.97641030799997,
     "long": 112.62936035000007,
     "image": "./hero-background.webp",
     "date": "Open Daily",
-    "description": "A popular shopping area in Malang with a mix of traditional and modern shops."
+    "address": "Lorem, Ipsum",
+    "description": "Kayutangan berasal dari tanaman menjalar yang bernama patangtangan, yang daunya menyerupai bentuk tangan manusia. Ada beberapa versi terkait sejarah wilayah ini. Versi Pertama menjelaskan bahwa pada masa kolonial, daerah ini terdapat papan penunjuk arah dari kayu berbentuk tangan di kawasan ini yang digunakan sebagai penanda arah bagi para pelancong. Versi lainnya, terkait dengan banyaknya pohon dengan daun yang menyerupai telapak tangan di sepanjang jalan, yang memberikan kesan visual seperti tangan - tangan yang menjulur, sehingga kawasan ini dinamakan kayutangan."
   },
   {
     "name": "Klenteng Eng An Kiong",
@@ -53,7 +59,8 @@
     "long": 112.63585658900001,
     "image": "./hero-background.webp",
     "date": "Open Daily",
-    "description": "A historic Chinese temple that showcases the city's cultural diversity."
+    "address": "Lorem, Ipsum",
+    "description": "Eng memiliki arti selamanya, sementara An berarti damai atau aman dan Kiong berarti istana atau candi. Sehingga secara keseluruhan Eng An Kiong berarti Istana keselamatan dalam keabadian Tuhan. Klenteng ini didirikan pada tahun 1825 oleh  Letnan Kwee Sam Hway, seorang perwira militer keturunan Tionghoa. Pembangunan klenteng ini dilakukan dalam dua tahap: tahap pertama pada tahun 1825 untuk ruang utama, dan tahap kedua antara tahun 1895 hingga 1934 untuk bangunan tambahan."
   },
   {
     "name": "Kuburan Londo",
@@ -61,15 +68,17 @@
     "long": 112.61971584500009,
     "image": "./hero-background.webp",
     "date": "Open Daily",
-    "description": "A historic Dutch cemetery that tells stories of Malang's colonial past."
+    "address": "Lorem, Ipsum",
+    "description": "Londo adalah istilah lokal untuk Belanda. Tempat ini adalah pemakaman kolonial peninggalan Belanda yang sudah ada sejak masa penjajahan. Banyak tokoh Belanda yang dimakamkan di lokasi ini, menjadikannya simbol sejarah kolonial di Kota Malang. Istilah Kuburan Londo muncul karena dulunya hanya orang-orang Belanda yang dimakamkan disini. Kini, kawasan ini menjadi obyek wisata sejarah dengan nuansa arsitektur Eropa yang masih terawat."
   },
   {
-    "name": "Masjid Jami'",
+    "name": "Masjid Agung Jami'",
     "lat": -7.982436675999963,
     "long": 112.62985126000001,
     "image": "./hero-background.webp",
     "date": "Open Daily",
-    "description": "A historic mosque that represents the Islamic heritage of Malang."
+    "address": "Lorem, Ipsum",
+    "description": "Agung dalam Bahasa Indonesia berarti besar atau megah. Jami' berasal dari Bahasa Arab yang berarti tempat berkumpul. Secara keseluruhan, Masjid Agung Jami' berarti masjid besar tempat berkumpulnya umat Islam.  Masjid ini dibangun dalam dua tahap. Tahap pertama dimulai pada tahun 1890 M, dan tahap kedua dimulai pada 15 Maret 1903 serta selesai pada 13 September 1903. Masjid ini didirikan di atas tanah Goepernemen (tanah negara) seluas sekitar 3.000 m². Bangunan masjid berbentuk bujur sangkar dengan struktur baja dan atap tajug tumpang dua, menggabungkan gaya arsitektur Jawa dan Arab."
   },
   {
     "name": "Tugu Merdeka",
@@ -77,6 +86,7 @@
     "long": 112.63418492300002,
     "image": "./hero-background.webp",
     "date": "Open Daily",
-    "description": "The Independence Monument of Malang, a symbol of the city's freedom."
+    "address": "Lorem, Ipsum",
+    "description": "Merdeka berati bebas atau lepas dari penjajahan. Secara keseluruhan Tugu Merdeka berarti monumen yang didirikan untuk memperingati kemerdekaan. Tugu Merdeka dibangun sebagai simbol peringatan kemerdekaan Republik Indonesia. Peletakan batu pertama dilakukan pada 17 Agustus 1946 oleh Wakil Gubernur Jawa Timur, Doel Arnowo. Namun, pada 23 Desember 1948, tugu ini dihancurkan oleh tentara Belanda selama Agresi Militer Belanda II. Setelah pengakuan kedaulatan, tugu dibangun kembali dan diresmikan oleh Presiden Soekarno pada 20 Mei 1953 dengan nama Tugu Nasional."
   }
 ] 

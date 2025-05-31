@@ -22,20 +22,27 @@ const UserIcon = L.icon({
   shadowUrl: iconShadow,
   iconSize: [25, 41],
   iconAnchor: [12, 41],
-  className: 'user-location-marker'
+  className: "user-location-marker",
 });
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
 // Function to calculate distance between two points using Haversine formula
-function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
+function calculateDistance(
+  lat1: number,
+  lon1: number,
+  lat2: number,
+  lon2: number
+): number {
   const R = 6371; // Radius of the earth in km
   const dLat = deg2rad(lat2 - lat1);
   const dLon = deg2rad(lon2 - lon1);
   const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    Math.cos(deg2rad(lat1)) *
+      Math.cos(deg2rad(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   const distance = R * c; // Distance in km
   return distance;
@@ -46,8 +53,12 @@ function deg2rad(deg: number): number {
 }
 
 export default function Maps() {
-  const [selectedLocation, setSelectedLocation] = useState<(typeof mapData)[0] | null>(null);
-  const [userLocation, setUserLocation] = useState<[number, number] | null>(null);
+  const [selectedLocation, setSelectedLocation] = useState<
+    (typeof mapData)[0] | null
+  >(null);
+  const [userLocation, setUserLocation] = useState<[number, number] | null>(
+    null
+  );
   const [distances, setDistances] = useState<Record<string, number>>({});
 
   // Get user's location
@@ -84,7 +95,11 @@ export default function Maps() {
 
   return (
     <div className="w-full flex flex-col md:flex-row">
-      <section className={`w-full h-[300px] md:h-screen order-1 transition-all duration-300 ${selectedLocation ? 'md:w-2/3' : 'md:w-full'}`}>
+      <section
+        className={`w-full h-[300px] md:h-[800px] order-1 transition-all duration-300 ${
+          selectedLocation ? "md:w-2/3" : "md:w-full"
+        }`}
+      >
         <MapContainer
           center={[-7.977131826999937, 112.63418492300002]}
           zoom={13}
@@ -96,10 +111,7 @@ export default function Maps() {
           />
           {/* User location marker */}
           {userLocation && (
-            <Marker
-              position={userLocation}
-              icon={UserIcon}
-            >
+            <Marker position={userLocation} icon={UserIcon}>
               <Popup>
                 <div>
                   <h3 className="font-semibold">Your Location</h3>
