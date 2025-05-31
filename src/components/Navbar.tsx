@@ -10,7 +10,7 @@ const navItems: Route[] = [
   { name: "Home", path: "/" },
   { name: "Maps", path: "/maps" },
   { name: "Destination", path: "/destination" },
-  { name: "Review", path: "#" },
+  // { name: "Review", path: "/review" },
 ];
 
 export default function Navbar() {
