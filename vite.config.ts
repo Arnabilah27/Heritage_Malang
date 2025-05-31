@@ -13,5 +13,8 @@ export default defineConfig({
   },
   json: {
     stringify: true
-  }
+  },
+  server: {
+    allowedHosts: true,
+  },
 })
