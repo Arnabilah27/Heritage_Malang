@@ -1,45 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
+import heritageData from "../../maps.json";
 
 import "swiper/swiper-bundle.css";
-
-const data = [
-  {
-    title: "THE STREET PAVEMENTS",
-    date: "Mar 1 - Mar 3 2025",
-    image: "./hero-background.webp",
-  },
-  {
-    title: "THE STREET PAVEMENTS",
-    date: "Mar 1 - Mar 3 2025",
-    image: "./hero-background.webp",
-  },
-  {
-    title: "THE STREET PAVEMENTS",
-    date: "Mar 1 - Mar 3 2025",
-    image: "./hero-background.webp",
-  },
-  {
-    title: "THE STREET PAVEMENTS",
-    date: "Mar 1 - Mar 3 2025",
-    image: "./hero-background.webp",
-  },
-  {
-    title: "THE STREET PAVEMENTS",
-    date: "Mar 1 - Mar 3 2025",
-    image: "./hero-background.webp",
-  },
-  {
-    title: "THE STREET PAVEMENTS",
-    date: "Mar 1 - Mar 3 2025",
-    image: "./hero-background.webp",
-  },
-  {
-    title: "THE STREET PAVEMENTS",
-    date: "Mar 1 - Mar 3 2025",
-    image: "./hero-background.webp",
-  },
-];
 
 export default function TouristSlider() {
   return (
@@ -56,7 +19,7 @@ export default function TouristSlider() {
         navigation
         pagination={{ clickable: true }}
       >
-        {data.map((item, i) => (
+        {heritageData.map((item, i) => (
           <SwiperSlide key={i}>
             <div
               className={`relative rounded-lg overflow-hidden py-10  
@@ -65,7 +28,7 @@ export default function TouristSlider() {
               {/* Image */}
               <img
                 src={item.image}
-                alt={item.title}
+                alt={item.name}
                 className="w-full h-96 object-cover rounded-lg"
               />
 
@@ -76,7 +39,7 @@ export default function TouristSlider() {
                     {item.date}
                   </p>
                   <h3 className="font-semibold text-[#525252] text-md uppercase leading-tight tracking-wide">
-                    {item.title}
+                    {item.name}
                   </h3>
                 </div>
                 <p className="text-sm text-gray-700 cursor-pointer">

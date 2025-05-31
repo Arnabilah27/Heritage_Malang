@@ -2,51 +2,81 @@
   {
     "name": "Balai Kota",
     "lat": -7.978011068999933,
-    "long": 112.63389592300007
+    "long": 112.63389592300007,
+    "image": "./hero-background.webp",
+    "date": "Open Daily",
+    "description": "The City Hall of Malang, a historic building that represents the city's administrative center."
   },
   {
     "name": "Gereja Cor Jesu",
     "lat": -7.967191053999954,
-    "long": 112.63192867900011
+    "long": 112.63192867900011,
+    "image": "./hero-background.webp",
+    "date": "Open Daily",
+    "description": "A beautiful Catholic church with stunning architecture and rich history."
   },
   {
     "name": "Gereja Immanuel Malang",
     "lat": -7.981724174999954,
-    "long": 112.63014554300003
+    "long": 112.63014554300003,
+    "image": "./hero-background.webp",
+    "date": "Open Daily",
+    "description": "A historic Protestant church in the heart of Malang."
   },
   {
     "name": "Gereja Paroki Hati Kudus Yesus",
     "lat": -7.980694382999957,
-    "long": 112.63077145600005
+    "long": 112.63077145600005,
+    "image": "./hero-background.webp",
+    "date": "Open Daily",
+    "description": "A Catholic church known for its beautiful architecture and peaceful atmosphere."
   },
   {
     "name": "Idjen Boulevard",
     "lat": -7.972359138999934,
-    "long": 112.62179437300006
+    "long": 112.62179437300006,
+    "image": "./hero-background.webp",
+    "date": "Open Daily",
+    "description": "A famous street in Malang known for its colonial architecture and vibrant atmosphere."
   },
   {
     "name": "Kayu Tangan",
     "lat": -7.97641030799997,
-    "long": 112.62936035000007
+    "long": 112.62936035000007,
+    "image": "./hero-background.webp",
+    "date": "Open Daily",
+    "description": "A popular shopping area in Malang with a mix of traditional and modern shops."
   },
   {
     "name": "Klenteng Eng An Kiong",
     "lat": -7.987420603999965,
-    "long": 112.63585658900001
+    "long": 112.63585658900001,
+    "image": "./hero-background.webp",
+    "date": "Open Daily",
+    "description": "A historic Chinese temple that showcases the city's cultural diversity."
   },
   {
     "name": "Kuburan Londo",
     "lat": -7.9953775669999345,
-    "long": 112.61971584500009
+    "long": 112.61971584500009,
+    "image": "./hero-background.webp",
+    "date": "Open Daily",
+    "description": "A historic Dutch cemetery that tells stories of Malang's colonial past."
   },
   {
     "name": "Masjid Jami'",
     "lat": -7.982436675999963,
-    "long": 112.62985126000001
+    "long": 112.62985126000001,
+    "image": "./hero-background.webp",
+    "date": "Open Daily",
+    "description": "A historic mosque that represents the Islamic heritage of Malang."
   },
   {
     "name": "Tugu Merdeka",
     "lat": -7.977131826999937,
-    "long": 112.63418492300002
+    "long": 112.63418492300002,
+    "image": "./hero-background.webp",
+    "date": "Open Daily",
+    "description": "The Independence Monument of Malang, a symbol of the city's freedom."
   }
 ] 
