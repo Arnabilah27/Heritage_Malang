@@ -59,7 +59,7 @@ export default function Timeline() {
                   : "md:pr-10 lg:pr-20 md:text-right"
               }`}
             >
-              <p className="italic text-[#C9AB81] text-md mb-2">
+              <p className="italic text-[#C9AB81] text-xl mb-2">
                 Sejarah Tentang
               </p>
               <h3 className="text-xl sm:text-3xl font-serif font-semibold uppercase tracking-wide mb-3 sm:mb-4">
@@ -83,12 +83,6 @@ export default function Timeline() {
                 <p className="whitespace-pre-line text-sm sm:text-base">
                   {item.workingOperational}
                 </p>
-              </div>
-              <div className="mt-2">
-                <strong className="block font-medium mb-1 text-sm sm:text-base">
-                  📍 Alamat
-                </strong>
-                <p className="text-sm sm:text-base">{item.address}</p>
               </div>
             </div>
           </div>
