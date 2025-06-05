@@ -1,86 +1,128 @@
-import { useState, useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { useState, useEffect, useRef } from "react"; // DIUBAH
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+
 import DestinationSlider from "@/components/Maps/DestinationSlider";
 import mapData from "@/maps.json";
+import RoutingMachine from "@/components/Maps/Routing";
 
-// Fix for default marker icons in React Leaflet
+// Impor baru untuk ikon kustom
+import { IoMdLocate } from "react-icons/io";
+import ReactDOMServer from "react-dom/server";
+
+// Fix & Setup Ikon Marker
 import L from "leaflet";
-import icon from "leaflet/dist/images/marker-icon.png";
-import iconShadow from "leaflet/dist/images/marker-shadow.png";
+import type { Map as LeafletMap } from "leaflet"; // DITAMBAHKAN
+import iconUrl from "leaflet/dist/images/marker-icon.png";
+import iconShadowUrl from "leaflet/dist/images/marker-shadow.png";
 
 const DefaultIcon = L.icon({
-  iconUrl: icon,
-  shadowUrl: iconShadow,
+  iconUrl: iconUrl,
+  shadowUrl: iconShadowUrl,
   iconSize: [25, 41],
   iconAnchor: [12, 41],
-});
-
-// Custom icon for user location
-const UserIcon = L.icon({
-  iconUrl: icon,
-  shadowUrl: iconShadow,
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  className: "user-location-marker",
+  popupAnchor: [1, -34],
 });
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-// Function to calculate distance between two points using Haversine formula
-function calculateDistance(
+// Ikon kustom untuk lokasi pengguna menggunakan React Icons
+const userLocationIcon = L.divIcon({
+  html: ReactDOMServer.renderToString(
+    <IoMdLocate className="text-[#51432F]" size={32} />
+  ),
+  className: "user-location-div-icon", // Kelas CSS kustom untuk styling
+  iconSize: [32, 32],
+  iconAnchor: [16, 32],
+  popupAnchor: [0, -32],
+});
+
+// Tipe data untuk setiap lokasi agar lebih aman dan jelas
+interface Location {
+  name: string;
+  lat: number;
+  long: number;
+  image?: string;
+  description?: string;
+}
+
+// Komponen helper untuk mengubah pusat peta secara dinamis
+const ChangeMapView = ({
+  center,
+  zoom,
+}: {
+  center: [number, number];
+  zoom: number;
+}) => {
+  const map = useMap();
+  map.setView(center, zoom);
+  return null;
+};
+
+// Fungsi kalkulasi jarak (tidak berubah)
+const calculateDistance = (
   lat1: number,
   lon1: number,
   lat2: number,
   lon2: number
-): number {
-  const R = 6371; // Radius of the earth in km
-  const dLat = deg2rad(lat2 - lat1);
-  const dLon = deg2rad(lon2 - lon1);
+): number => {
+  const R = 6371; // Radius bumi dalam km
+  const dLat = (lat2 - lat1) * (Math.PI / 180);
+  const dLon = (lon2 - lon1) * (Math.PI / 180);
   const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(deg2rad(lat1)) *
-      Math.cos(deg2rad(lat2)) *
+    Math.cos(lat1 * (Math.PI / 180)) *
+      Math.cos(lat2 * (Math.PI / 180)) *
       Math.sin(dLon / 2) *
       Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const distance = R * c; // Distance in km
-  return distance;
-}
-
-function deg2rad(deg: number): number {
-  return deg * (Math.PI / 180);
-}
+  return R * c; // Jarak dalam km
+};
 
 export default function Maps() {
-  const [selectedLocation, setSelectedLocation] = useState<
-    (typeof mapData)[0] | null
-  >(null);
+  const mapRef = useRef<LeafletMap | null>(null); // DITAMBAHKAN
+  const [selectedLocation, setSelectedLocation] = useState<Location | null>(
+    null
+  );
   const [userLocation, setUserLocation] = useState<[number, number] | null>(
     null
   );
   const [distances, setDistances] = useState<Record<string, number>>({});
+  const [isLocating, setIsLocating] = useState<boolean>(true);
+  const [locationError, setLocationError] = useState<string | null>(null);
 
-  // Get user's location
+  // Fungsi untuk menangani event 'close' dari DestinationSlider
+  const handleCloseSlider = () => {
+    setSelectedLocation(null);
+    // DIUBAH: Tambahkan baris ini untuk menutup popup
+    mapRef.current?.closePopup();
+  };
+
   useEffect(() => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setUserLocation([latitude, longitude]);
-        },
-        (error) => {
-          console.error("Error getting location:", error);
-        }
-      );
+    if (!("geolocation" in navigator)) {
+      setLocationError("Geolocation tidak didukung di browser Anda.");
+      setIsLocating(false);
+      return;
     }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        setUserLocation([latitude, longitude]);
+        setIsLocating(false);
+      },
+      (error) => {
+        setLocationError(`Gagal mendapatkan lokasi: ${error.message}.`);
+        setIsLocating(false);
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+    );
   }, []);
 
-  // Calculate distances when user location is available
   useEffect(() => {
-    if (userLocation) {
+    if (userLocation && mapData.length > 0) {
       const newDistances: Record<string, number> = {};
-      mapData.forEach((location) => {
+      (mapData as Location[]).forEach((location) => {
         const distance = calculateDistance(
           userLocation[0],
           userLocation[1],
@@ -96,56 +138,78 @@ export default function Maps() {
   return (
     <div className="w-full flex flex-col md:flex-row">
       <section
-        className={`w-full h-[300px] md:h-[800px] order-1 transition-all duration-300 ${
+        className={`w-full h-[300px] md:h-[800px] order-1 transition-all duration-300 relative ${
           selectedLocation ? "md:w-2/3" : "md:w-full"
         }`}
       >
+        {isLocating && (
+          <div className="absolute top-2 left-1/2 -translate-x-1/2 z-[1000] bg-white p-2 rounded shadow-lg">
+            Mencari lokasi Anda...
+          </div>
+        )}
+        {locationError && (
+          <div className="absolute top-2 left-1/2 -translate-x-1/2 z-[1000] bg-red-100 text-red-700 p-2 rounded shadow-lg">
+            {locationError}
+          </div>
+        )}
+
         <MapContainer
-          center={[-7.977131826999937, 112.63418492300002]}
+          ref={mapRef} // DITAMBAHKAN
+          center={[-7.97, 112.63]}
           zoom={13}
           className="w-full h-full z-0"
         >
+          {userLocation && <ChangeMapView center={userLocation} zoom={14} />}
+
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {/* User location marker */}
+
           {userLocation && (
-            <Marker position={userLocation} icon={UserIcon}>
+            <Marker position={userLocation} icon={userLocationIcon}>
               <Popup>
-                <div>
-                  <h3 className="font-semibold">Your Location</h3>
-                </div>
+                <h3 className="font-semibold">Lokasi Anda</h3>
               </Popup>
             </Marker>
           )}
-          {mapData.map((location) => (
+
+          {(mapData as Location[]).map((location) => (
             <Marker
               key={location.name}
               position={[location.lat, location.long]}
               eventHandlers={{
-                click: () => {
-                  setSelectedLocation(location);
-                },
+                click: () => setSelectedLocation(location),
               }}
             >
               <Popup>
                 <div>
                   <h3 className="font-semibold">{location.name}</h3>
-                  {userLocation && (
+                  {distances[location.name] !== undefined && (
                     <p className="text-sm text-gray-600 mt-1">
-                      Distance: {distances[location.name]?.toFixed(1)} km
+                      Jarak: {distances[location.name].toFixed(1)} km
                     </p>
                   )}
                 </div>
               </Popup>
             </Marker>
           ))}
+
+          {userLocation && selectedLocation && (
+            <RoutingMachine
+              userLocation={userLocation}
+              destination={[selectedLocation.lat, selectedLocation.long]}
+            />
+          )}
         </MapContainer>
       </section>
+
       {selectedLocation && (
         <section className="w-full md:w-1/3 order-2 animate-fade-in">
-          <DestinationSlider selectedLocation={selectedLocation} />
+          <DestinationSlider
+            selectedLocation={selectedLocation}
+            onClose={handleCloseSlider}
+          />
         </section>
       )}
     </div>

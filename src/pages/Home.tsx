@@ -22,21 +22,28 @@ export default function Home() {
                 className="w-full lg:w-1/2"
               />
               <p className="text-md text-justify">
-                Di balik pesona alam dan hiruk pikuk Kota Malang, tersembunyi
-                jejak sejarah yang membentuk identitasnya hingga hari ini. Pada
-                masa kolonial Belanda, Malang berkembang menjadi kota
-                peristirahatan favorit para pejabat kolonial karena iklimnya
-                yang sejuk dan pemandangannya yang menawan. Bangunan bergaya
-                Eropa, jalanan yang tertata rapi, serta villa dan rumah dinas
-                yang megah menjadi saksi bisu era keemasan arsitektur kolonial
-                di tanah Jawa. Sisa-sisa peninggalan itu masih berdiri kokoh
-                menyimpan cerita tentang masa lalu, tentang kekuasaan dan
-                perlawanan, serta tentang kehidupan masyarakat Malang yang terus
-                bergerak di tengah bayang-bayang sejarah. Kini, setiap sudut
-                kota menjadi ruang hidup yang menyatu antara warisan budaya dan
-                modernitas. Mari telusuri cerita di balik setiap bangunan tua,
-                dengarkan bisikan masa lalu di lorong-lorong kota, dan rasakan
-                atmosfer khas yang hanya bisa ditemukan di Kota Malang.
+                Malang adalah kota yang menawan di provinsi Jawa Timur,
+                Indonesia, terkenal karena iklim dataran tingginya yang sejuk,
+                lanskap alamnya yang memukau, dan warisan budaya yang kaya.
+                Terletak di antara perbukitan dan pegunungan yang hijau, kota
+                ini menawarkan pelarian yang menyegarkan dari panas tropis,
+                dengan daya tarik seperti situs bersejarah, candi kuno, dan
+                lembaga pendidikan yang mencerminkan tradisi Jawa serta pengaruh
+                kolonial Belanda.
+                <br />
+                Sebagai pusat utama pariwisata dan pertanian, Malang memadukan
+                kehidupan modern dengan sejarah yang mendalam, menarik
+                pengunjung lewat pasar tradisional, festival budaya, dan kebun
+                apel yang terkenal. Di luar daya tarik alam dan budayanya,
+                Malang juga berkembang sebagai pusat ekonomi yang ditopang oleh
+                sektor manufaktur, pendidikan, dan pertanian, menjadikannya
+                tujuan populer bagi pencari petualangan maupun ketenangan.
+                Semangat kebersamaan masyarakatnya tampak dalam kuliner khas,
+                pasar yang ramai, dan aktivitas luar ruang, menjadikan Malang
+                sebagai permata tersembunyi di Indonesia yang menarik perhatian
+                pelajar, wisatawan, dan pencinta alam. Dengan perpaduan
+                keindahan alam dan kedalaman sejarah, Malang terus memikat siapa
+                pun yang mencari liburan yang seimbang.
               </p>
             </div>
           </div>

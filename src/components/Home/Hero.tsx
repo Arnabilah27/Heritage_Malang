@@ -57,9 +57,11 @@ export default function Hero() {
                   {slide.title}
                   <span className="hidden md:inline">&nbsp;&nbsp;—</span>
                 </h1>
-                <button className="mt-6 px-6 py-2 border-2 font-semibold border-[#C9AB81] text-[#C9AB81] cursor-pointer hover:bg-white hover:text-black transition duration-300">
-                  Explore city
-                </button>
+                <a href="maps">
+                  <button className="mt-6 px-6 py-2 border-2 font-semibold italic border-[#C9AB81] text-[#C9AB81] cursor-pointer hover:bg-[#B5A488] hover:text-white transition duration-300">
+                    Explore Maps
+                  </button>
+                </a>
               </div>
             </div>
           </SwiperSlide>

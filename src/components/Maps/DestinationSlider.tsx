@@ -3,19 +3,25 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import type { Swiper as SwiperInstance } from "swiper/types";
 import heritageData from "../../maps.json";
+import { IoMdClose } from "react-icons/io"; // Impor ikon untuk tombol close
 
 interface Location {
   name: string;
   lat: number;
   long: number;
+  image?: string; // Tambahkan properti lain agar sesuai dengan data di maps.json
+  description?: string;
 }
 
+// Tambahkan 'onClose' ke dalam interface props
 interface DestinationSliderProps {
   selectedLocation: Location | null;
+  onClose: () => void; // Fungsi yang tidak mengembalikan apa-apa
 }
 
 export default function DestinationSlider({
   selectedLocation,
+  onClose, // Ambil 'onClose' dari props
 }: DestinationSliderProps) {
   const [swiperInstance, setSwiperInstance] = useState<SwiperInstance | null>(
     null
@@ -24,7 +30,7 @@ export default function DestinationSlider({
   // When a location is selected, move to its slide
   useEffect(() => {
     if (selectedLocation && swiperInstance) {
-      const index = heritageData.findIndex(
+      const index = (heritageData as Location[]).findIndex(
         (dest) => dest.name === selectedLocation.name
       );
       if (index !== -1) {
@@ -34,14 +40,24 @@ export default function DestinationSlider({
   }, [selectedLocation, swiperInstance]);
 
   return (
-    <div className="w-full bg-[#EBE9E2] h-full p-4 sm:p-6 flex flex-col items-center justify-center">
+    // Tambahkan 'relative' agar tombol 'absolute' berfungsi dengan benar
+    <div className="w-full bg-[#EBE9E2] h-full p-4 sm:p-6 flex flex-col items-center justify-center relative">
+      {/* Buat tombol Close di pojok kanan atas */}
+      <button
+        onClick={onClose} // Panggil fungsi onClose saat diklik
+        className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition-colors z-10"
+        aria-label="Close"
+      >
+        <IoMdClose size={28} />
+      </button>
+
       <Swiper
         onSwiper={(swiper) => {
           setSwiperInstance(swiper);
         }}
         className="w-full"
       >
-        {heritageData.map((item, index) => (
+        {(heritageData as Location[]).map((item, index) => (
           <SwiperSlide key={index}>
             <div className="flex flex-col items-center text-center mt-10 md:mt-0">
               <img
@@ -58,7 +74,7 @@ export default function DestinationSlider({
               <p className="text-gray-600 text-sm mb-4 max-w-xl">
                 {item.description}
               </p>
-              <button className="border px-4 py-2 text-sm border-[#5F5F5F] hover:bg-gray-800 hover:text-white transition duration-200 cursor-pointer">
+              <button className="border border-[#9A8F69] text-[#9A8F69] px-4 py-2 rounded-sm hover:bg-[#9A8F69] hover:text-white transition duration-200 cursor-pointer">
                 View More
               </button>
             </div>
