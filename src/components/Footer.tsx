@@ -14,12 +14,12 @@ export default function Footer() {
           <div className="flex flex-1 flex-col gap-2.5 justify-center items-center">
             <div className="flex flex-col text-center">
               <button className="w-[300px] px-4 py-2 text-[#343A40] border border-[#343A40] rounded-full bg-transparent">
-                +6285753475365
+                +6287893850867
               </button>
             </div>
             <div className="flex flex-col text-center">
               <button className="w-[300px] px-4 py-2 text-[#343A40] border border-[#343A40] rounded-full bg-transparent">
-                official@digitaldesa.id
+                5016211114@Student.its.ac.id
               </button>
             </div>
           </div>
@@ -32,14 +32,8 @@ export default function Footer() {
           </div>
           <div className="flex flex-col gap-2 text-center md:flex-row">
             <div className="flex flex-col flex-1">
-              <p>Ruko I Walk J/10</p>
-              <p>Ciputra Citraland, Jl. Tun Abdul Razak,</p>
-              <p>Sulawesi Selatan</p>
-            </div>
-            <div className="flex flex-col flex-1">
-              <p>Gedung Menara 165,</p>
-              <p>Jl. TB. SIMATUPANG kav.1 Cilandak Timur,</p>
-              <p>Jakarta Selatan</p>
+              <p>Departemen Teknik Geomatika - ITS,</p>
+              <p>Jl. Despro, Surabaya.</p>
             </div>
           </div>
         </div>

@@ -22,25 +22,21 @@ export default function Home() {
                 className="w-full lg:w-1/2"
               />
               <p className="text-md text-justify">
-                Malang is a charming city in East Java province, Indonesia,
-                celebrated for its cool highland climate, stunning natural
-                landscapes, and vibrant cultural heritage. Nestled among rolling
-                hills and lush mountains, it offers a refreshing escape from
-                tropical heat, with attractions like historical sites, ancient
-                temples, and educational institutions that highlight its
-                Javanese traditions and Dutch colonial influences.
-                <br />
-                As a major hub for tourism and agriculture, Malang blends modern
-                life with rich history, drawing visitors for its markets,
-                festivals, and famous apple orchards. Beyond its natural and
-                cultural appeal, Malang thrives as an economic center driven by
-                manufacturing, education, and farming, making it a popular
-                destination for adventure and relaxation. The city's community
-                spirit shines through local cuisine, bustling markets, and
-                outdoor activities, positioning it as a hidden gem in Indonesia
-                that attracts students, travelers, and nature lovers alike. With
-                its mix of scenic beauty and historical depth, Malang continues
-                to enchant those seeking a balanced getaway.
+                Di balik pesona alam dan hiruk pikuk Kota Malang, tersembunyi
+                jejak sejarah yang membentuk identitasnya hingga hari ini. Pada
+                masa kolonial Belanda, Malang berkembang menjadi kota
+                peristirahatan favorit para pejabat kolonial karena iklimnya
+                yang sejuk dan pemandangannya yang menawan. Bangunan bergaya
+                Eropa, jalanan yang tertata rapi, serta villa dan rumah dinas
+                yang megah menjadi saksi bisu era keemasan arsitektur kolonial
+                di tanah Jawa. Sisa-sisa peninggalan itu masih berdiri kokoh
+                menyimpan cerita tentang masa lalu, tentang kekuasaan dan
+                perlawanan, serta tentang kehidupan masyarakat Malang yang terus
+                bergerak di tengah bayang-bayang sejarah. Kini, setiap sudut
+                kota menjadi ruang hidup yang menyatu antara warisan budaya dan
+                modernitas. Mari telusuri cerita di balik setiap bangunan tua,
+                dengarkan bisikan masa lalu di lorong-lorong kota, dan rasakan
+                atmosfer khas yang hanya bisa ditemukan di Kota Malang.
               </p>
             </div>
           </div>
