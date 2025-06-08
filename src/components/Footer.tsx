@@ -46,14 +46,14 @@ export default function Footer() {
             </h3>
           </div>
           <div className="flex flex-row gap-2 text-center justify-center">
-            <Link to="https://www.instagram.com/digitaldesa.id/">
+            <Link to="https://www.instagram.com/arnabila_">
               <img
                 src="/instagram.webp"
                 alt="Instagram"
                 className="w-12 h-12"
               />
             </Link>
-            <Link to="https://wa.me/628xxxxxxx">
+            <Link to="https://wa.me/6287893850867">
               <img src="/whatsapp.webp" alt="WhatsApp" className="w-11 h-11" />
             </Link>
           </div>

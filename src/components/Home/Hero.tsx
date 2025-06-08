@@ -1,21 +1,22 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, EffectFade, Pagination } from "swiper/modules";
+import { Link } from "react-router-dom";
 
 import "swiper/swiper-bundle.css";
 
 const slides = [
   {
-    image: "./hero-background.webp",
+    image: "/hero-background.png",
     title: "HERITAGE MALANG CITY",
     subtitle: "STADSKAART",
   },
   {
-    image: "./hero-background.webp",
+    image: "/hero-2.png",
     title: "EXPLORE MALANG HISTORY",
     subtitle: "STADSKAART",
   },
   {
-    image: "./hero-background.webp",
+    image: "/hero-3.png",
     title: "DISCOVER CULTURE",
     subtitle: "STADSKAART",
   },
@@ -46,7 +47,8 @@ export default function Hero() {
               <img
                 src={slide.image}
                 alt={slide.title}
-                className="absolute inset-0 w-full h-full object-fill brightness-75"
+                // --- PERUBAHAN DI SINI ---
+                className="absolute inset-0 w-full h-full object-cover brightness-75"
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4 z-10">
                 <h4 className="text-xl italic tracking-widest mb-2 uppercase">
@@ -57,11 +59,12 @@ export default function Hero() {
                   {slide.title}
                   <span className="hidden md:inline">&nbsp;&nbsp;—</span>
                 </h1>
-                <a href="maps">
-                  <button className="mt-6 px-6 py-2 border-2 font-semibold italic border-[#C9AB81] text-[#C9AB81] cursor-pointer hover:bg-[#B5A488] hover:text-white transition duration-300">
-                    Explore Maps
-                  </button>
-                </a>
+                <Link
+                  to="/destination" // Diubah ke /destination sesuai permintaan sebelumnya
+                  className="mt-6 inline-block px-6 py-2 border-2 font-semibold italic border-[#C9AB81] text-[#C9AB81] cursor-pointer hover:bg-[#B5A488] hover:text-white transition duration-300"
+                >
+                  Explore Maps
+                </Link>
               </div>
             </div>
           </SwiperSlide>
