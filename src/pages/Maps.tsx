@@ -8,38 +8,22 @@ import mapData from "@/maps.json";
 import RoutingMachine from "@/components/Maps/Routing";
 
 // Impor ikon kustom
+import { IconType } from "react-icons";
 import { IoMdLocate } from "react-icons/io";
 import ReactDOMServer from "react-dom/server";
 import { RiGovernmentFill } from "react-icons/ri";
 import { LiaMonumentSolid } from "react-icons/lia";
 import { MdTempleBuddhist } from "react-icons/md";
 import { GiTombstone } from "react-icons/gi";
-import { FaChurch, FaMosque, FaMapMarkerAlt } from "react-icons/fa"; // DIUBAH: Tambahkan FaMapMarkerAlt
+import { FaChurch, FaMosque, FaMapMarkerAlt } from "react-icons/fa";
 
 // Fix & Setup Ikon Marker
 import L from "leaflet";
 import type { Map as LeafletMap } from "leaflet";
-// Kita tidak lagi butuh iconUrl dan iconShadowUrl untuk DefaultIcon
-// import iconUrl from "leaflet/dist/images/marker-icon.png";
-// import iconShadowUrl from "leaflet/dist/images/marker-shadow.png";
 
-// --- PERUBAHAN 1: Ikon Default sekarang menggunakan React Icons ---
 const DefaultIcon = L.divIcon({
   html: ReactDOMServer.renderToString(
-    <FaMapMarkerAlt className="text-[#2F1915]" size={32} />
-  ),
-  className: "user-location-div-icon", // Pakai kelas yang sama untuk styling konsisten
-  iconSize: [32, 32],
-  iconAnchor: [16, 32],
-  popupAnchor: [0, -32],
-});
-
-L.Marker.prototype.options.icon = DefaultIcon;
-
-// Ikon kustom untuk lokasi pengguna menggunakan React Icons (warna sudah sesuai)
-const userLocationIcon = L.divIcon({
-  html: ReactDOMServer.renderToString(
-    <IoMdLocate className="text-[#2F1915]" size={32} />
+    <FaMapMarkerAlt className="text-[#51432F]" size={32} />
   ),
   className: "user-location-div-icon",
   iconSize: [32, 32],
@@ -47,7 +31,18 @@ const userLocationIcon = L.divIcon({
   popupAnchor: [0, -32],
 });
 
-// Tipe data untuk setiap lokasi agar lebih aman dan jelas
+L.Marker.prototype.options.icon = DefaultIcon;
+
+const userLocationIcon = L.divIcon({
+  html: ReactDOMServer.renderToString(
+    <IoMdLocate className="text-[#51432F]" size={32} />
+  ),
+  className: "user-location-div-icon",
+  iconSize: [32, 32],
+  iconAnchor: [16, 32],
+  popupAnchor: [0, -32],
+});
+
 interface Location {
   name: string;
   lat: number;
@@ -57,8 +52,9 @@ interface Location {
   description?: string;
 }
 
-// Kamus untuk memetakan 'iconKey' dari JSON ke komponen React Icon
-const iconMap = {
+// --- PERUBAIKAN DI SINI ---
+// Beri tahu TypeScript tipe spesifik dari objek iconMap
+const iconMap: { [key: string]: IconType } = {
   Church: FaChurch,
   Mosque: FaMosque,
   Stone: GiTombstone,
@@ -67,7 +63,6 @@ const iconMap = {
   Temple: MdTempleBuddhist,
 };
 
-// Komponen helper untuk mengubah pusat peta secara dinamis
 const ChangeMapView = ({
   center,
   zoom,
@@ -80,7 +75,6 @@ const ChangeMapView = ({
   return null;
 };
 
-// Fungsi kalkulasi jarak (tidak berubah)
 const calculateDistance = (
   lat1: number,
   lon1: number,
@@ -119,7 +113,6 @@ export default function Maps() {
     mapRef.current?.closePopup();
   };
 
-  // ... (semua useEffect Anda tetap sama, tidak perlu diubah)
   useEffect(() => {
     if (destinationNameFromUrl) {
       const decodedName = decodeURIComponent(destinationNameFromUrl);
@@ -221,7 +214,6 @@ export default function Maps() {
             const customIcon = IconComponent
               ? L.divIcon({
                   html: ReactDOMServer.renderToString(
-                    // --- PERUBAHAN 2: Ganti warna di sini ---
                     <IconComponent className="text-[#51432F]" size={28} />
                   ),
                   className: "user-location-div-icon",
@@ -229,7 +221,7 @@ export default function Maps() {
                   iconAnchor: [14, 28],
                   popupAnchor: [0, -28],
                 })
-              : DefaultIcon; // Fallback ke ikon default baru kita
+              : DefaultIcon;
 
             return (
               <Marker
