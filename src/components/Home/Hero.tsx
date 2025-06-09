@@ -60,7 +60,7 @@ export default function Hero() {
                   <span className="hidden md:inline">&nbsp;&nbsp;—</span>
                 </h1>
                 <Link
-                  to="/destination" // Diubah ke /destination sesuai permintaan sebelumnya
+                  to="/maps"
                   className="mt-6 inline-block px-6 py-2 border-2 font-semibold italic border-[#C9AB81] text-[#C9AB81] cursor-pointer hover:bg-[#B5A488] hover:text-white transition duration-300"
                 >
                   Explore Maps

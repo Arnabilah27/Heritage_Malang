@@ -1,6 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import heritageData from "../../maps.json";
+import { Link } from "react-router-dom";
 
 import "swiper/swiper-bundle.css";
 
@@ -42,10 +43,12 @@ export default function TouristSlider() {
                     {item.name}
                   </h3>
                 </div>
-                <p className="text-sm text-gray-700 cursor-pointer">
-                  <span className="font-sans text-[#C9AB81]">——&nbsp;</span>{" "}
-                  View more
-                </p>
+                <Link to={`/destination`}>
+                  <p className="text-sm text-gray-700 cursor-pointer hover:text-[#C9AB81] transition-colors">
+                    <span className="font-sans text-[#C9AB81]">——&nbsp;</span>
+                    View more
+                  </p>
+                </Link>
               </div>
             </div>
           </SwiperSlide>

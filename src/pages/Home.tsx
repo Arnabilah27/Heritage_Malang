@@ -17,9 +17,9 @@ export default function Home() {
           <div className="flex flex-row gap-2 py-10">
             <div className="flex gap-10 flex-col lg:flex-row px-6 lg:px-40">
               <img
-                src="/history.webp"
+                src="/history.png"
                 alt="history"
-                className="w-full lg:w-1/2"
+                className="rounded-lg w-full lg:w-1/2"
               />
               <p className="text-md text-justify">
                 Malang adalah kota yang menawan di provinsi Jawa Timur,

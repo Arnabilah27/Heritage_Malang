@@ -47,7 +47,7 @@ export default function Timeline() {
               <img
                 src={item.image}
                 alt={item.name}
-                className="rounded-lg border shadow-md w-full h-[250px] sm:h-[350px] md:h-[500px] object-cover"
+                className="rounded-lg border shadow-md w-full h-[500px] sm:h-[350px] md:h-[500px] object-cover"
               />
             </div>
 

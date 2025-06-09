@@ -7,9 +7,7 @@ export default function Footer() {
         {/* Contact Us */}
         <div className="flex flex-col flex-1 gap-2 pt-8 pb-4 md:pt-12 md:pb-15">
           <div className="flex flex-col gap-2 text-center">
-            <h3 className="text-xl text-white font-semibold mb-4">
-              Contact Us
-            </h3>
+            <h3 className="text-xl text-white font-semibold mb-4">Contact</h3>
           </div>
           <div className="flex flex-1 flex-col gap-2.5 justify-center items-center">
             <div className="flex flex-col text-center">
