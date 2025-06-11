@@ -121,7 +121,6 @@ export default function Maps() {
     null
   );
   const [distances, setDistances] = useState<Record<string, number>>({});
-  const [openPopupKey, setOpenPopupKey] = useState<string | null>(null);
 
   useEffect(() => {
     if (!navigator.geolocation) {
@@ -152,12 +151,10 @@ export default function Maps() {
 
   const handleMarkerClick = (location: Location) => {
     setSelectedLocation(location);
-    setOpenPopupKey(location.name);
   };
 
   const handleCloseSlider = () => {
     setSelectedLocation(null);
-    setOpenPopupKey(null);
   };
 
   const stadiaMapsApiKey = import.meta.env.VITE_STADIA_API_KEY;
@@ -336,7 +333,6 @@ export default function Maps() {
                 icon={customIcon}
                 eventHandlers={{
                   click: () => handleMarkerClick(location),
-                  popupclose: () => setOpenPopupKey(null),
                 }}
               >
                 <Popup>
