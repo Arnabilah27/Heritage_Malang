@@ -1,33 +1,34 @@
-// src/components/Maps/Routing.tsx
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import "leaflet-routing-machine";
 
-// Hapus seluruh blok 'declare module "leaflet" { ... }' karena menyebabkan konflik tipe saat build.
-
 interface RoutingMachineProps {
   userLocation: [number, number];
   destination: [number, number];
+  onRouteFound?: (bounds: L.LatLngBounds) => void;
 }
 
 const RoutingMachine: React.FC<RoutingMachineProps> = ({
   userLocation,
   destination,
+  onRouteFound,
 }) => {
   const map = useMap();
+  const routingControlRef = useRef<any>(null);
 
   useEffect(() => {
     if (!map || !userLocation || !destination) return;
 
-    if (!(L as any).Routing || !(L as any).Routing.control) {
-      console.error("Leaflet Routing Machine tidak termuat dengan benar.");
-      return;
+    // Remove any existing routing control
+    if (routingControlRef.current) {
+      map.removeControl(routingControlRef.current);
+      routingControlRef.current = null;
     }
 
-    // Opsi untuk L.Routing.control
-    const routingOptions = {
+    // Create new routing control
+    const routingControl = (L as any).Routing.control({
       waypoints: [
         L.latLng(userLocation[0], userLocation[1]),
         L.latLng(destination[0], destination[1]),
@@ -35,26 +36,33 @@ const RoutingMachine: React.FC<RoutingMachineProps> = ({
       routeWhileDragging: false,
       addWaypoints: false,
       draggableWaypoints: false,
-      fitSelectedRoutes: true,
+      fitSelectedRoutes: false, // We'll handle fit via onRouteFound
       show: false,
       createMarker: () => null,
       lineOptions: {
         styles: [{ color: "deepskyblue", opacity: 0.8, weight: 5 }],
       },
-    };
+    }).addTo(map);
 
-    // Gunakan 'as any' untuk melewati pemeriksaan tipe yang terlalu ketat saat build
-    const routingControl = (L as any).Routing.control(routingOptions).addTo(
-      map
-    );
+    routingControlRef.current = routingControl;
 
-    // Fungsi cleanup
+    // Listen for route found to get bounds and fit map
+    routingControl.on("routesfound", function (e: any) {
+      if (onRouteFound && e && e.routes && e.routes[0] && e.routes[0].bounds) {
+        onRouteFound(e.routes[0].bounds);
+      }
+      if (e && e.routes && e.routes[0] && e.routes[0].bounds && map) {
+        map.fitBounds(e.routes[0].bounds, { padding: [50, 50] });
+      }
+    });
+
     return () => {
-      if (routingControl) {
-        map.removeControl(routingControl);
+      if (routingControlRef.current) {
+        map.removeControl(routingControlRef.current);
+        routingControlRef.current = null;
       }
     };
-  }, [map, userLocation, destination]);
+  }, [map, userLocation, destination, onRouteFound]);
 
   return null;
 };

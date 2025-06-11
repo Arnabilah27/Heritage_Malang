@@ -6,6 +6,8 @@ import "./index.css";
 import "./assets/css/font.css";
 import "leaflet/dist/leaflet.css";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
+import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
+import "swiper/swiper-bundle.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

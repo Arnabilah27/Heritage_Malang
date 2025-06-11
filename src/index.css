@@ -152,3 +152,5 @@
 .user-location-marker {
   filter: hue-rotate(120deg) brightness(1.2);
 }
+
+@import "leaflet/dist/leaflet.css";

@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import type { Swiper as SwiperInstance } from "swiper/types";
 import heritageData from "../../maps.json";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; // Catatan: Jika ini proyek Next.js App Router, Anda mungkin ingin menggunakan `next/link`
 import { RiCloseFill } from "react-icons/ri";
 
 interface Location {
@@ -39,15 +39,9 @@ export default function DestinationSlider({
   }, [selectedLocation, swiperInstance]);
 
   return (
-    <div className="w-full bg-[#EBE9E2] h-full p-6 pt-20 flex flex-col justify-center relative">
-      <button
-        onClick={onClose}
-        className="absolute top-6 right-6 text-[#9A8F69] hover:text-gray-800 transition-colors z-10"
-        aria-label="Close"
-      >
-        <RiCloseFill size={28} />
-      </button>
-
+    // Mengubah justify-center menjadi justify-start pada container utama
+    // Mengurangi padding-top agar konten lebih naik
+    <div className="w-full bg-[#EBE9E2] h-full p-6 pt-10 flex flex-col justify-start relative">
       <Swiper
         onSwiper={(swiper) => {
           setSwiperInstance(swiper);
@@ -56,21 +50,38 @@ export default function DestinationSlider({
       >
         {(heritageData as Location[]).map((item, index) => (
           <SwiperSlide key={index}>
-            <div className="flex flex-col items-center text-center">
-              <img
-                src={item.image}
-                alt={item.name}
-                className="rounded-lg w-full h-[450px] sm:h-[450px] md:h-[450px] object-cover"
-              />
-
-              <div className="h-8"></div>
-
+            {/* Mengubah justify-center menjadi justify-start pada slide content */}
+            <div className="flex flex-col items-center text-center h-full">
+              {" "}
+              {/* Tambahkan h-full di sini */}
+              {/* Wadah relatif untuk gambar dan tombol close */}
+              <div className="relative w-full mb-4">
+                {" "}
+                {/* Tambahkan mb-4 untuk jarak ke teks di bawah */}
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="rounded-lg w-full h-[400px] sm:h-[400px] md:h-[400px] object-cover"
+                />
+                {/* Tombol close yang diposisikan di atas gambar */}
+                <button
+                  onClick={onClose}
+                  className="absolute top-2 right-2 text-[white] bg-[#9A8F69] bg-opacity-50 rounded-full p-1 hover:bg-[#544d32] transition-colors z-10"
+                  aria-label="Close"
+                >
+                  <RiCloseFill size={20} />
+                </button>
+              </div>
+              {/* Hapus div dengan h-8 yang tidak perlu lagi */}
+              {/* <div className="h-8"></div> */}
               <h3 className="uppercase text-lg font-semibold tracking-wide my-4">
                 {item.name}
               </h3>
               <p className="text-gray-600 text-sm mb-4 max-w-xl">
                 {item.description}
               </p>
+              {/* Catatan: Untuk Next.js App Router, gunakan `next/link` */}
+              {/* Contoh: <Link href={`/destination/${encodeURIComponent(item.name)}`}> */}
               <Link to={`/destination`}>
                 <button className="border border-[#9A8F69] text-[#9A8F69] px-4 py-2 rounded-sm hover:bg-[#9A8F69] hover:text-white transition duration-200 cursor-pointer">
                   View More
