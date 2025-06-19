@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import type { Swiper as SwiperInstance } from "swiper/types";
 import heritageData from "../../maps.json";
-import { Link } from "react-router-dom"; // Catatan: Jika ini proyek Next.js App Router, Anda mungkin ingin menggunakan `next/link`
+import { Link, useNavigate } from "react-router-dom"; // Catatan: Jika ini proyek Next.js App Router, Anda mungkin ingin menggunakan `next/link`
 import { RiCloseFill } from "react-icons/ri";
 
 interface Location {
@@ -26,6 +26,7 @@ export default function DestinationSlider({
   const [swiperInstance, setSwiperInstance] = useState<SwiperInstance | null>(
     null
   );
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (selectedLocation && swiperInstance) {
@@ -82,9 +83,15 @@ export default function DestinationSlider({
               </p>
               {/* Catatan: Untuk Next.js App Router, gunakan `next/link` */}
               {/* Contoh: <Link href={`/destination/${encodeURIComponent(item.name)}`}> */}
-              <Link to={`/destination`}>
+              <Link
+                to="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/destinasi", { state: { scrollTo: item.name } });
+                }}
+              >
                 <button className="border border-[#9A8F69] text-[#9A8F69] px-4 py-2 rounded-sm hover:bg-[#9A8F69] hover:text-white transition duration-200 cursor-pointer">
-                  View More
+                  Lihat Detail
                 </button>
               </Link>
             </div>

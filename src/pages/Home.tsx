@@ -11,7 +11,7 @@ export default function Home() {
           <h1 className="text-xl italic">STADSKAART</h1>
           <h1 className="text-2xl lg:text-4xl italic text-center font-semibold">
             <span className="hidden md:inline">—&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            HISTORY OF MALANG CITY
+            SEJARAH KOTA MALANG
             <span className="hidden md:inline">&nbsp;&nbsp;&nbsp;&nbsp;—</span>
           </h1>
           <div className="flex flex-row gap-2 py-10">
@@ -55,7 +55,7 @@ export default function Home() {
         <div className="flex flex-col items-center justify-center gap-2 py-10">
           <h1 className="text-2xl lg:text-4xl italic text-center font-semibold">
             <span className="hidden md:inline">—&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            TOURIST ATTRACTION
+            DESTINASI WISATA
             <span className="hidden md:inline">&nbsp;&nbsp;&nbsp;&nbsp;—</span>
           </h1>
           <div className="w-full flex flex-row gap-2 lg:pt-12">

@@ -1,11 +1,13 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import heritageData from "../../maps.json";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import "swiper/swiper-bundle.css";
 
 export default function TouristSlider() {
+  const navigate = useNavigate();
+
   return (
     <div className="max-w-7xl mx-auto px-4 w-full">
       <Swiper
@@ -43,12 +45,19 @@ export default function TouristSlider() {
                     {item.name}
                   </h3>
                 </div>
-                <Link to={`/destination`}>
-                  <p className="text-sm text-gray-700 cursor-pointer hover:text-[#C9AB81] transition-colors">
-                    <span className="font-sans text-[#C9AB81]">——&nbsp;</span>
-                    View more
-                  </p>
-                </Link>
+                {/* Ganti Link dengan button agar bisa kirim state */}
+                <button
+                  type="button"
+                  className="text-sm text-gray-700 cursor-pointer hover:text-[#C9AB81] transition-colors bg-transparent border-none p-0"
+                  onClick={() =>
+                    navigate(`/destinasi`, {
+                      state: { scrollTo: item.name },
+                    })
+                  }
+                >
+                  <span className="font-sans text-[#C9AB81]">——&nbsp;</span>
+                  Lihat Detail
+                </button>
               </div>
             </div>
           </SwiperSlide>

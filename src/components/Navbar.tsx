@@ -7,9 +7,9 @@ interface Route {
 }
 
 const navItems: Route[] = [
-  { name: "Home", path: "/" },
-  { name: "Maps", path: "/maps" },
-  { name: "Destination", path: "/destination" },
+  { name: "Beranda", path: "/" },
+  { name: "Peta", path: "/peta" },
+  { name: "Destinasi", path: "/destinasi" },
   // { name: "Review", path: "/review" },
 ];
 

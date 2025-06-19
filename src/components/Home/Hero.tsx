@@ -7,17 +7,17 @@ import "swiper/swiper-bundle.css";
 const slides = [
   {
     image: "/hero-background.png",
-    title: "HERITAGE MALANG CITY",
+    title: "HERITAGE KOTA MALANG",
     subtitle: "STADSKAART",
   },
   {
     image: "/hero-2.png",
-    title: "EXPLORE MALANG HISTORY",
+    title: "EKSPLORASI SEJARAH",
     subtitle: "STADSKAART",
   },
   {
     image: "/hero-3.png",
-    title: "DISCOVER CULTURE",
+    title: "TEMUKAN WARISAN",
     subtitle: "STADSKAART",
   },
 ];
@@ -47,7 +47,6 @@ export default function Hero() {
               <img
                 src={slide.image}
                 alt={slide.title}
-                // --- PERUBAHAN DI SINI ---
                 className="absolute inset-0 w-full h-full object-cover brightness-75"
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4 z-10">
@@ -60,10 +59,10 @@ export default function Hero() {
                   <span className="hidden md:inline">&nbsp;&nbsp;—</span>
                 </h1>
                 <Link
-                  to="/maps"
+                  to="/peta"
                   className="mt-6 inline-block px-6 py-2 border-2 font-semibold italic border-[#C9AB81] text-[#C9AB81] cursor-pointer hover:bg-[#B5A488] hover:text-white transition duration-300"
                 >
-                  Explore Maps
+                  Jelajahi Peta
                 </Link>
               </div>
             </div>

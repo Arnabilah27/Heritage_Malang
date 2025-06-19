@@ -7,7 +7,7 @@ export default function Footer() {
         {/* Contact Us */}
         <div className="flex flex-col flex-1 gap-2 pt-8 pb-4 md:pt-12 md:pb-15">
           <div className="flex flex-col gap-2 text-center">
-            <h3 className="text-xl text-white font-semibold mb-4">Contact</h3>
+            <h3 className="text-xl text-white font-semibold mb-4">Kontak</h3>
           </div>
           <div className="flex flex-1 flex-col gap-2.5 justify-center items-center">
             <div className="flex flex-col text-center">
@@ -26,7 +26,7 @@ export default function Footer() {
         {/* Address */}
         <div className="flex flex-col flex-1 gap-2 pt-8 pb-4 md:pt-12 md:pb-15">
           <div className="flex flex-col gap-2 text-center">
-            <h3 className="text-xl text-white font-semibold mb-3">Address</h3>
+            <h3 className="text-xl text-white font-semibold mb-3">Alamat</h3>
           </div>
           <div className="flex flex-col gap-2 text-center md:flex-row">
             <div className="flex flex-col flex-1">
@@ -40,7 +40,7 @@ export default function Footer() {
         <div className="flex flex-col flex-1 gap-1 pt-8 pb-6 md:pt-12 md:pb-15">
           <div className="flex flex-col gap-2 text-center">
             <h3 className="text-xl text-white font-semibold mb-3">
-              Social Media
+              Media Sosial
             </h3>
           </div>
           <div className="flex flex-row gap-2 text-center justify-center">
