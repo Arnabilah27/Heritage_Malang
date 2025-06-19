@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import mapsData from "@/maps.json";
 import { useLocation } from "react-router-dom";
-import { FaMapMarkerAlt } from "react-icons/fa";
 
 export default function Timeline() {
   const [visibleItems, setVisibleItems] = useState(5);
@@ -68,7 +67,9 @@ export default function Timeline() {
         {mapsData.slice(0, visibleItems).map((item, i) => (
           <div
             key={item.name}
-            ref={(el) => (itemRefs.current[item.name] = el)}
+            ref={(el) => {
+              itemRefs.current[item.name] = el;
+            }}
             className={`flex flex-col md:flex-row items-center justify-center md:items-start gap-6 md:gap-10 relative z-10 ${
               i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
             }`}
