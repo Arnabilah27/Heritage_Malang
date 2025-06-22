@@ -108,6 +108,16 @@ export default function Maps() {
   const [isLocating, setIsLocating] = useState<boolean>(true);
   const [locationError, setLocationError] = useState<string | null>(null);
 
+  // --- Tambahkan state untuk mengatur tinggi slider ---
+  const [sliderHeight, setSliderHeight] = useState<number | undefined>(
+    undefined
+  );
+
+  // --- Handler untuk menerima tinggi slider dari DestinationSlider ---
+  const handleSliderHeightChange = (height: number | undefined) => {
+    setSliderHeight(height);
+  };
+
   const handleCloseSlider = () => {
     setSelectedLocation(null);
     mapRef.current?.closePopup();
@@ -164,26 +174,31 @@ export default function Maps() {
   return (
     <div className="w-full flex flex-col md:flex-row">
       <section
-        className={`w-full h-screen order-1 transition-all duration-300 relative ${
-          selectedLocation ? "md:w-2/3" : "md:w-full"
-        }`}
+        className={`transition-all duration-300 relative order-1`}
+        style={
+          selectedLocation && sliderHeight
+            ? {
+                height: sliderHeight,
+                minHeight: 0,
+                maxHeight: "100vh",
+                width: "100%",
+              }
+            : { height: "100vh", width: "100%" }
+        }
       >
-        {isLocating && (
-          <div className="absolute top-2 left-1/2 -translate-x-1/2 z-[1000] bg-white p-2 rounded shadow-lg">
-            Mencari lokasi Anda...
-          </div>
-        )}
-        {locationError && (
-          <div className="absolute top-2 left-1/2 -translate-x-1/2 z-[1000] bg-red-100 text-red-700 p-2 rounded shadow-lg">
-            {locationError}
-          </div>
-        )}
-
         <MapContainer
-          ref={mapRef}
-          center={[-7.97, 112.63]}
-          zoom={13}
+          center={
+            userLocation
+              ? (userLocation as [number, number])
+              : [-7.9771318, 112.6341849]
+          }
+          zoom={14}
           className="w-full h-full z-0"
+          style={
+            selectedLocation && sliderHeight
+              ? { height: sliderHeight, minHeight: 0, maxHeight: "100vh" }
+              : { height: "100vh" }
+          }
         >
           {userLocation && <ChangeMapView center={userLocation} zoom={14} />}
           {selectedLocation && (
@@ -258,10 +273,19 @@ export default function Maps() {
       </section>
 
       {selectedLocation && (
-        <section className="w-full md:w-1/3 order-2 animate-fade-in">
+        <section
+          className="w-full md:w-1/3 order-2 animate-fade-in"
+          style={
+            sliderHeight
+              ? { height: sliderHeight, minHeight: 0, maxHeight: "100vh" }
+              : { maxHeight: "100vh" }
+          }
+        >
           <DestinationSlider
             selectedLocation={selectedLocation}
             onClose={handleCloseSlider}
+            // Tambahkan prop baru untuk callback tinggi slider
+            onHeightChange={handleSliderHeightChange}
           />
         </section>
       )}

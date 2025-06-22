@@ -3,15 +3,23 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import type { Swiper as SwiperInstance } from "swiper/types";
 import heritageData from "../../maps.json";
-import { Link, useNavigate } from "react-router-dom"; // Catatan: Jika ini proyek Next.js App Router, Anda mungkin ingin menggunakan `next/link`
+import { Link, useNavigate } from "react-router-dom";
 import { RiCloseFill } from "react-icons/ri";
 
+// ✅ Perbarui interface sesuai data yang digunakan
 interface Location {
+  code: string;
   name: string;
   lat: number;
   long: number;
   image?: string;
   description?: string;
+  element?: string;
+  othername?: string;
+  language?: string;
+  meaning?: string;
+  manager?: string;
+  status?: string;
 }
 
 interface DestinationSliderProps {
@@ -40,49 +48,62 @@ export default function DestinationSlider({
   }, [selectedLocation, swiperInstance]);
 
   return (
-    // Mengubah justify-center menjadi justify-start pada container utama
-    // Mengurangi padding-top agar konten lebih naik
     <div className="w-full bg-[#EBE9E2] h-full p-6 pt-10 flex flex-col justify-start relative">
       <Swiper
-        onSwiper={(swiper) => {
-          setSwiperInstance(swiper);
-        }}
+        onSwiper={(swiper) => setSwiperInstance(swiper)}
         className="w-full"
       >
         {(heritageData as Location[]).map((item, index) => (
           <SwiperSlide key={index}>
-            {/* Mengubah justify-center menjadi justify-start pada slide content */}
             <div className="flex flex-col items-center text-center h-full">
-              {" "}
-              {/* Tambahkan h-full di sini */}
-              {/* Wadah relatif untuk gambar dan tombol close */}
               <div className="relative w-full mb-4">
-                {" "}
-                {/* Tambahkan mb-4 untuk jarak ke teks di bawah */}
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="rounded-lg w-full h-[400px] sm:h-[400px] md:h-[400px] object-cover"
+                  className="rounded-lg w-full h-[400px] object-cover"
                 />
-                {/* Tombol close yang diposisikan di atas gambar */}
                 <button
                   onClick={onClose}
-                  className="absolute top-2 right-2 text-[white] bg-[#9A8F69] bg-opacity-50 rounded-full p-1 hover:bg-[#544d32] transition-colors z-10"
+                  className="absolute top-2 right-2 text-white bg-[#9A8F69] bg-opacity-50 rounded-full p-1 hover:bg-[#544d32] transition-colors z-10"
                   aria-label="Close"
                 >
                   <RiCloseFill size={20} />
                 </button>
               </div>
-              {/* Hapus div dengan h-8 yang tidak perlu lagi */}
-              {/* <div className="h-8"></div> */}
-              <h3 className="uppercase text-lg font-semibold tracking-wide my-4">
-                {item.name}
-              </h3>
-              <p className="text-gray-600 text-sm mb-4 max-w-xl">
-                {item.description}
-              </p>
-              {/* Catatan: Untuk Next.js App Router, gunakan `next/link` */}
-              {/* Contoh: <Link href={`/destination/${encodeURIComponent(item.name)}`}> */}
+
+              {/* TABEL INFORMASI */}
+              <div className="overflow-x-auto w-full max-w-xl mb-6">
+                <table className="table-auto w-full border border-gray-300 text-sm text-left">
+                  <tbody>
+                    {[
+                      { label: "Kode Bangunan", value: item.code || "—" },
+                      { label: "Nama", value: item.name || "—" },
+                      { label: "Unsur", value: item.element || "—" },
+                      {
+                        label: "Koordinat",
+                        value:
+                          item.lat && item.long
+                            ? `${item.lat}, ${item.long}`
+                            : "—",
+                      },
+                      { label: "Nama Lain", value: item.othername || "—" },
+                      { label: "Asal Bahasa", value: item.language || "—" },
+                      { label: "Arti Nama", value: item.meaning || "—" },
+                      { label: "Sejarah Nama", value: item.description || "—" },
+                      { label: "Pengelolah", value: item.manager || "—" },
+                      { label: "Status Bangunan", value: item.status || "—" },
+                    ].map((row, idx) => (
+                      <tr key={idx} className="border-t border-gray-300">
+                        <td className="px-4 py-2 font-semibold text-[#544d32] w-1/3">
+                          {row.label}
+                        </td>
+                        <td className="px-4 py-2 text-gray-700">{row.value}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
               <Link
                 to="#"
                 onClick={(e) => {
