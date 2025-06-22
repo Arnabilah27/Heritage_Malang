@@ -6,7 +6,6 @@ import heritageData from "../../maps.json";
 import { Link, useNavigate } from "react-router-dom";
 import { RiCloseFill } from "react-icons/ri";
 
-// ✅ Perbarui interface sesuai data yang digunakan
 interface Location {
   code?: string;
   name?: string;
@@ -48,19 +47,19 @@ export default function DestinationSlider({
   }, [selectedLocation, swiperInstance]);
 
   return (
-    <div className="w-full bg-[#EBE9E2] h-full p-6 pt-10 flex flex-col justify-start relative">
+    <div className="w-full bg-[#EBE9E2] p-6 pt-10">
       <Swiper
         onSwiper={(swiper) => setSwiperInstance(swiper)}
         className="w-full"
       >
         {(heritageData as Location[]).map((item, index) => (
           <SwiperSlide key={index}>
-            <div className="flex flex-col items-center text-center h-full">
-              <div className="relative w-full mb-4">
+            <div className="flex flex-col text-center max-h-[92vh]">
+              <div className="relative w-full mb-4 flex-shrink-0">
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="rounded-lg w-full h-[400px] object-cover"
+                  className="rounded-lg w-full h-[300px] md:h-[350px] object-cover"
                 />
                 <button
                   onClick={onClose}
@@ -71,8 +70,7 @@ export default function DestinationSlider({
                 </button>
               </div>
 
-              {/* TABEL INFORMASI */}
-              <div className="overflow-x-auto w-full max-w-xl mb-6">
+              <div className="overflow-y-auto w-full max-w-xl mb-4 flex-grow">
                 <table className="table-auto w-full border border-gray-300 text-sm text-left">
                   <tbody>
                     {[
@@ -94,7 +92,7 @@ export default function DestinationSlider({
                       { label: "Status Bangunan", value: item.status || "—" },
                     ].map((row, idx) => (
                       <tr key={idx} className="border-t border-gray-300">
-                        <td className="px-4 py-2 font-semibold text-[#544d32] w-1/3">
+                        <td className="px-4 py-2 font-semibold text-[#544d32] w-1/3 align-top">
                           {row.label}
                         </td>
                         <td className="px-4 py-2 text-gray-700">{row.value}</td>
@@ -104,17 +102,20 @@ export default function DestinationSlider({
                 </table>
               </div>
 
-              <Link
-                to="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate("/destinasi", { state: { scrollTo: item.name } });
-                }}
-              >
-                <button className="border border-[#9A8F69] text-[#9A8F69] px-4 py-2 rounded-sm hover:bg-[#9A8F69] hover:text-white transition duration-200 cursor-pointer">
-                  Lihat Detail
-                </button>
-              </Link>
+              {/* === PERBAIKAN FINAL DI SINI: `mt-auto` DIHAPUS === */}
+              <div className="flex-shrink-0">
+                <Link
+                  to="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/destinasi", { state: { scrollTo: item.name } });
+                  }}
+                >
+                  <button className="border border-[#9A8F69] text-[#9A8F69] px-4 py-2 rounded-sm hover:bg-[#9A8F69] hover:text-white transition duration-200 cursor-pointer">
+                    Lihat Detail
+                  </button>
+                </Link>
+              </div>
             </div>
           </SwiperSlide>
         ))}

@@ -7,7 +7,7 @@ import DestinationSlider from "@/components/Maps/DestinationSlider";
 import mapData from "@/maps.json";
 import RoutingMachine from "@/components/Maps/Routing";
 
-// ... (semua import dan setup ikon Anda tetap sama)
+// Impor ikon kustom
 import { IconType } from "react-icons";
 import { IoMdLocate } from "react-icons/io";
 import ReactDOMServer from "react-dom/server";
@@ -17,10 +17,10 @@ import { MdTempleBuddhist } from "react-icons/md";
 import { GiTombstone } from "react-icons/gi";
 import { FaChurch, FaMosque, FaMapMarkerAlt } from "react-icons/fa";
 
+// Fix & Setup Ikon Marker
 import L from "leaflet";
 import type { Map as LeafletMap } from "leaflet";
 
-// ... (semua kode setup ikon dan fungsi lainnya tetap sama)
 const DefaultIcon = L.divIcon({
   html: ReactDOMServer.renderToString(
     <FaMapMarkerAlt className="text-[#51432F]" size={32} />
@@ -44,12 +44,19 @@ const userLocationIcon = L.divIcon({
 });
 
 interface Location {
+  code?: string;
   name: string;
   lat: number;
   long: number;
   image?: string;
-  iconKey?: string;
   description?: string;
+  element?: string;
+  othername?: string;
+  language?: string;
+  meaning?: string;
+  manager?: string;
+  status?: string;
+  iconKey?: string;
 }
 
 const iconMap: { [key: string]: IconType } = {
@@ -94,6 +101,7 @@ const calculateDistance = (
 
 export default function Maps() {
   const mapRef = useRef<LeafletMap | null>(null);
+  const mapWrapperRef = useRef<HTMLElement | null>(null);
   const { name: destinationNameFromUrl } = useParams();
 
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(
@@ -111,7 +119,6 @@ export default function Maps() {
     mapRef.current?.closePopup();
   };
 
-  // ... (useEffect lainnya biarkan seperti semula)
   useEffect(() => {
     if (destinationNameFromUrl) {
       const decodedName = decodeURIComponent(destinationNameFromUrl);
@@ -160,31 +167,28 @@ export default function Maps() {
     }
   }, [userLocation]);
 
-  // ==================================================================
-  // --- TAMBAHKAN BLOK KODE INI ---
-  // Hook ini akan berjalan setiap kali `selectedLocation` berubah.
   useEffect(() => {
-    // Buat timer untuk menunda eksekusi
-    const timer = setTimeout(() => {
-      // Cek apakah mapRef sudah terpasang
-      if (mapRef.current) {
-        // Panggil invalidateSize() untuk me-render ulang peta
-        // sesuai ukuran container yang baru.
-        mapRef.current.invalidateSize();
-      }
-    }, 310); // Durasi sedikit lebih lama dari transisi CSS (300ms)
+    const map = mapRef.current;
+    const mapWrapper = mapWrapperRef.current;
 
-    // Fungsi cleanup untuk membersihkan timer jika komponen unmount
-    // atau jika selectedLocation berubah lagi sebelum timer selesai.
+    if (!map || !mapWrapper) return;
+
+    const observer = new ResizeObserver(() => {
+      map.invalidateSize();
+    });
+
+    observer.observe(mapWrapper);
+
     return () => {
-      clearTimeout(timer);
+      observer.unobserve(mapWrapper);
     };
-  }, [selectedLocation]); // Dependency array: hanya jalankan saat selectedLocation berubah
-  // ==================================================================
+  }, []);
 
   return (
-    <div className="w-full flex flex-col md:flex-row">
+    // PERBAIKAN UTAMA ADA DI BARIS INI: `md:items-start`
+    <div className="w-full flex flex-col md:flex-row md:items-start">
       <section
+        ref={mapWrapperRef}
         className={`w-full h-screen order-1 transition-all duration-300 relative ${
           selectedLocation ? "md:w-2/3" : "md:w-full"
         }`}
@@ -201,12 +205,11 @@ export default function Maps() {
         )}
 
         <MapContainer
-          ref={mapRef} // ref sudah terpasang dengan benar
+          ref={mapRef}
           center={[-7.97, 112.63]}
           zoom={13}
           className="w-full h-full z-0"
         >
-          {/* ... sisa dari JSX MapContainer Anda tidak berubah ... */}
           {userLocation && <ChangeMapView center={userLocation} zoom={14} />}
           {selectedLocation && (
             <ChangeMapView
