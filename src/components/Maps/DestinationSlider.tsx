@@ -8,10 +8,10 @@ import { RiCloseFill } from "react-icons/ri";
 
 // ✅ Perbarui interface sesuai data yang digunakan
 interface Location {
-  code: string;
-  name: string;
-  lat: number;
-  long: number;
+  code?: string;
+  name?: string;
+  lat?: number;
+  long?: number;
   image?: string;
   description?: string;
   element?: string;

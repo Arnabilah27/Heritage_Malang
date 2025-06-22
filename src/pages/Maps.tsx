@@ -7,7 +7,7 @@ import DestinationSlider from "@/components/Maps/DestinationSlider";
 import mapData from "@/maps.json";
 import RoutingMachine from "@/components/Maps/Routing";
 
-// Impor ikon kustom
+// ... (semua import dan setup ikon Anda tetap sama)
 import { IconType } from "react-icons";
 import { IoMdLocate } from "react-icons/io";
 import ReactDOMServer from "react-dom/server";
@@ -17,10 +17,10 @@ import { MdTempleBuddhist } from "react-icons/md";
 import { GiTombstone } from "react-icons/gi";
 import { FaChurch, FaMosque, FaMapMarkerAlt } from "react-icons/fa";
 
-// Fix & Setup Ikon Marker
 import L from "leaflet";
 import type { Map as LeafletMap } from "leaflet";
 
+// ... (semua kode setup ikon dan fungsi lainnya tetap sama)
 const DefaultIcon = L.divIcon({
   html: ReactDOMServer.renderToString(
     <FaMapMarkerAlt className="text-[#51432F]" size={32} />
@@ -52,8 +52,6 @@ interface Location {
   description?: string;
 }
 
-// --- PERUBAIKAN DI SINI ---
-// Beri tahu TypeScript tipe spesifik dari objek iconMap
 const iconMap: { [key: string]: IconType } = {
   Church: FaChurch,
   Mosque: FaMosque,
@@ -108,21 +106,12 @@ export default function Maps() {
   const [isLocating, setIsLocating] = useState<boolean>(true);
   const [locationError, setLocationError] = useState<string | null>(null);
 
-  // --- Tambahkan state untuk mengatur tinggi slider ---
-  const [sliderHeight, setSliderHeight] = useState<number | undefined>(
-    undefined
-  );
-
-  // --- Handler untuk menerima tinggi slider dari DestinationSlider ---
-  const handleSliderHeightChange = (height: number | undefined) => {
-    setSliderHeight(height);
-  };
-
   const handleCloseSlider = () => {
     setSelectedLocation(null);
     mapRef.current?.closePopup();
   };
 
+  // ... (useEffect lainnya biarkan seperti semula)
   useEffect(() => {
     if (destinationNameFromUrl) {
       const decodedName = decodeURIComponent(destinationNameFromUrl);
@@ -171,35 +160,53 @@ export default function Maps() {
     }
   }, [userLocation]);
 
+  // ==================================================================
+  // --- TAMBAHKAN BLOK KODE INI ---
+  // Hook ini akan berjalan setiap kali `selectedLocation` berubah.
+  useEffect(() => {
+    // Buat timer untuk menunda eksekusi
+    const timer = setTimeout(() => {
+      // Cek apakah mapRef sudah terpasang
+      if (mapRef.current) {
+        // Panggil invalidateSize() untuk me-render ulang peta
+        // sesuai ukuran container yang baru.
+        mapRef.current.invalidateSize();
+      }
+    }, 310); // Durasi sedikit lebih lama dari transisi CSS (300ms)
+
+    // Fungsi cleanup untuk membersihkan timer jika komponen unmount
+    // atau jika selectedLocation berubah lagi sebelum timer selesai.
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [selectedLocation]); // Dependency array: hanya jalankan saat selectedLocation berubah
+  // ==================================================================
+
   return (
     <div className="w-full flex flex-col md:flex-row">
       <section
-        className={`transition-all duration-300 relative order-1`}
-        style={
-          selectedLocation && sliderHeight
-            ? {
-                height: sliderHeight,
-                minHeight: 0,
-                maxHeight: "100vh",
-                width: "100%",
-              }
-            : { height: "100vh", width: "100%" }
-        }
+        className={`w-full h-screen order-1 transition-all duration-300 relative ${
+          selectedLocation ? "md:w-2/3" : "md:w-full"
+        }`}
       >
+        {isLocating && (
+          <div className="absolute top-2 left-1/2 -translate-x-1/2 z-[1000] bg-white p-2 rounded shadow-lg">
+            Mencari lokasi Anda...
+          </div>
+        )}
+        {locationError && (
+          <div className="absolute top-2 left-1/2 -translate-x-1/2 z-[1000] bg-red-100 text-red-700 p-2 rounded shadow-lg">
+            {locationError}
+          </div>
+        )}
+
         <MapContainer
-          center={
-            userLocation
-              ? (userLocation as [number, number])
-              : [-7.9771318, 112.6341849]
-          }
-          zoom={14}
+          ref={mapRef} // ref sudah terpasang dengan benar
+          center={[-7.97, 112.63]}
+          zoom={13}
           className="w-full h-full z-0"
-          style={
-            selectedLocation && sliderHeight
-              ? { height: sliderHeight, minHeight: 0, maxHeight: "100vh" }
-              : { height: "100vh" }
-          }
         >
+          {/* ... sisa dari JSX MapContainer Anda tidak berubah ... */}
           {userLocation && <ChangeMapView center={userLocation} zoom={14} />}
           {selectedLocation && (
             <ChangeMapView
@@ -273,19 +280,10 @@ export default function Maps() {
       </section>
 
       {selectedLocation && (
-        <section
-          className="w-full md:w-1/3 order-2 animate-fade-in"
-          style={
-            sliderHeight
-              ? { height: sliderHeight, minHeight: 0, maxHeight: "100vh" }
-              : { maxHeight: "100vh" }
-          }
-        >
+        <section className="w-full md:w-1/3 order-2 animate-fade-in">
           <DestinationSlider
             selectedLocation={selectedLocation}
             onClose={handleCloseSlider}
-            // Tambahkan prop baru untuk callback tinggi slider
-            onHeightChange={handleSliderHeightChange}
           />
         </section>
       )}
