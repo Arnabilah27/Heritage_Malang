@@ -1,5 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMap,
+  LayersControl,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useParams } from "react-router-dom";
 
@@ -7,7 +14,6 @@ import DestinationSlider from "@/components/Maps/DestinationSlider";
 import mapData from "@/maps.json";
 import RoutingMachine from "@/components/Maps/Routing";
 
-// Impor ikon kustom
 import { IconType } from "react-icons";
 import { IoMdLocate } from "react-icons/io";
 import ReactDOMServer from "react-dom/server";
@@ -17,10 +23,10 @@ import { MdTempleBuddhist } from "react-icons/md";
 import { GiTombstone } from "react-icons/gi";
 import { FaChurch, FaMosque, FaMapMarkerAlt } from "react-icons/fa";
 
-// Fix & Setup Ikon Marker
 import L from "leaflet";
 import type { Map as LeafletMap } from "leaflet";
 
+// Default marker
 const DefaultIcon = L.divIcon({
   html: ReactDOMServer.renderToString(
     <FaMapMarkerAlt className="text-[#51432F]" size={32} />
@@ -80,6 +86,23 @@ const ChangeMapView = ({
   return null;
 };
 
+function LayerChangeHandler() {
+  const map = useMap();
+
+  useEffect(() => {
+    const onBaselayerChange = (e: any) => {
+      console.log("Baselayer changed to:", e.name);
+    };
+
+    map.on("baselayerchange", onBaselayerChange);
+    return () => {
+      map.off("baselayerchange", onBaselayerChange);
+    };
+  }, [map]);
+
+  return null;
+}
+
 const calculateDistance = (
   lat1: number,
   lon1: number,
@@ -113,6 +136,7 @@ export default function Maps() {
   const [distances, setDistances] = useState<Record<string, number>>({});
   const [isLocating, setIsLocating] = useState<boolean>(true);
   const [locationError, setLocationError] = useState<string | null>(null);
+  const [selectedTile, setSelectedTile] = useState("Default");
 
   const handleCloseSlider = () => {
     setSelectedLocation(null);
@@ -185,7 +209,6 @@ export default function Maps() {
   }, []);
 
   return (
-    // PERBAIKAN UTAMA ADA DI BARIS INI: `md:items-start`
     <div className="w-full flex flex-col md:flex-row md:items-start">
       <section
         ref={mapWrapperRef}
@@ -218,10 +241,33 @@ export default function Maps() {
             />
           )}
 
-          <TileLayer
-            attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-            url={`https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?api_key=YOUR_API_KEY_HERE`}
-          />
+          <LayerChangeHandler />
+
+          <LayersControl
+            position="bottomright"
+            onBaselayerchange={(e) => setSelectedTile(e.name)}
+          >
+            <LayersControl.BaseLayer
+              checked={selectedTile === "Default"}
+              name="Default"
+            >
+              <TileLayer
+                attribution={`© <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> © <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors`}
+                url={`https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?api_key=${
+                  import.meta.env.VITE_STADIA_MAPS_API_KEY
+                }`}
+              />
+            </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer
+              checked={selectedTile === "Satellite"}
+              name="Satellite"
+            >
+              <TileLayer
+                attribution="Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
+                url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+              />
+            </LayersControl.BaseLayer>
+          </LayersControl>
 
           {userLocation && (
             <Marker position={userLocation} icon={userLocationIcon}>
