@@ -86,19 +86,25 @@ const ChangeMapView = ({
   return null;
 };
 
-function LayerChangeHandler() {
+// ✅ LayerChangeHandler dipindah dari <LayersControl>
+function LayerChangeHandler({
+  onChange,
+}: {
+  onChange?: (name: string) => void;
+}) {
   const map = useMap();
 
   useEffect(() => {
-    const onBaselayerChange = (e: any) => {
+    const handler = (e: { name: string }) => {
       console.log("Baselayer changed to:", e.name);
+      if (onChange) onChange(e.name);
     };
 
-    map.on("baselayerchange", onBaselayerChange);
+    map.on("baselayerchange", handler);
     return () => {
-      map.off("baselayerchange", onBaselayerChange);
+      map.off("baselayerchange", handler);
     };
-  }, [map]);
+  }, [map, onChange]);
 
   return null;
 }
@@ -241,12 +247,10 @@ export default function Maps() {
             />
           )}
 
-          <LayerChangeHandler />
+          {/* ✅ Handler ubah tile */}
+          <LayerChangeHandler onChange={(name) => setSelectedTile(name)} />
 
-          <LayersControl
-            position="bottomright"
-            onBaselayerchange={(e) => setSelectedTile(e.name)}
-          >
+          <LayersControl position="bottomright">
             <LayersControl.BaseLayer
               checked={selectedTile === "Default"}
               name="Default"
