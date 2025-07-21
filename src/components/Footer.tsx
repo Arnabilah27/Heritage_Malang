@@ -31,7 +31,12 @@ export default function Footer() {
           <div className="flex flex-col gap-2 text-center md:flex-row">
             <div className="flex flex-col flex-1">
               <p>Departemen Teknik Geomatika - ITS,</p>
-              <p>Jl. Despro, Surabaya.</p>
+              <p>
+                Jl. Despro, Surabaya.
+                <br />
+                Sumber Data : Dinas Kepemudaan Olahraga dan Pariwisata yang
+                dikumpulkan pada tanggal 27 April - 03 Mei 2025
+              </p>
             </div>
           </div>
         </div>
